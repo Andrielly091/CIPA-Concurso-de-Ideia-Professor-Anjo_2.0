@@ -30,7 +30,7 @@ public class LoginDao {
 	}
 
 	public List<Login> listar() {
-        String sql = "SELECT * FROM login";
+        String sql = "SELECT * FROM login WHERE loginId=?";
         List<Login> resposta = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -40,6 +40,7 @@ public class LoginDao {
                 login.setLoginId(resultado.getInt(1));
                 login.setEmail(resultado.getString("email"));
                 login.setSenha(resultado.getString("senha"));
+                login.setSenha(resultado.getString("loginId"));
    
                 resposta.add(login);
             }
