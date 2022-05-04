@@ -19,7 +19,7 @@ public class LoginDao {
 	public LoginDao() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-            String DATABASE_URL = "jdbc:mysql://localhost/login_bd_cipa";
+            String DATABASE_URL = "jdbc:mysql://localhost/ifpe_bd_cliente";
             String usuario = "root";
             String senha = "";
             this.connection = DriverManager.getConnection(DATABASE_URL, usuario, senha);
