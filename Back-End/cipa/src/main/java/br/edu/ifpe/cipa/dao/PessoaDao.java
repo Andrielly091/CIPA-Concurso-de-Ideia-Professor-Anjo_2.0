@@ -82,8 +82,8 @@ public class PessoaDao {
 
     public boolean remover(Integer email) {
         String sql = "DELETE FROM cliente WHERE email=?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+        try {        	
+        	PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, email);
             stmt.execute();
             return true;

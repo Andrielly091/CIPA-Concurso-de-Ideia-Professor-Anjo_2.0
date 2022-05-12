@@ -20,7 +20,7 @@ import br.edu.ifpe.cipa.service.PessoaService;
 
 @RestController
 @RequestMapping("/pessoas")
-public class ControlePessoa {
+public class PessoaController {
 	
 	PessoaService pessoaservice = new PessoaService();
 	
@@ -56,6 +56,8 @@ public class ControlePessoa {
 	public void update(@RequestBody Pessoa pessoa) {
 		pessoaservice.alterar(pessoa);
 	}
+
+	
 
 
 }
