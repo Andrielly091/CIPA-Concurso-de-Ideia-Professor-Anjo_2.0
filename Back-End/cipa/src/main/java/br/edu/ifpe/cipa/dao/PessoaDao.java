@@ -19,7 +19,7 @@ public class PessoaDao {
 	 public PessoaDao() {
 	        try {
 	            Class.forName("com.mysql.jdbc.Driver");
-	            String DATABASE_URL = "jdbc:mysql://localhost/ifpe_bd_cliente";
+	            String DATABASE_URL = "jdbc:mysql://localhost/cliente_bd_ifpe";
 	            String usuario = "root";
 	            String senha = "";
 	            this.connection = DriverManager.getConnection(DATABASE_URL, usuario, senha);
