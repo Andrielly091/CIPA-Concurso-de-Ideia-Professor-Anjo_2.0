@@ -12,14 +12,18 @@ import java.util.logging.Logger;
 
 import br.edu.ifpe.cipa.model.Pessoa;
 
-public class PessoaDao {
+public class PessoaDao { 
 	
 	private Connection connection;
 		
 	 public PessoaDao() {
 	        try {
 	            Class.forName("com.mysql.jdbc.Driver");
+<<<<<<< HEAD
 	            String DATABASE_URL = "jdbc:mysql://localhost/cliente_bd_ifpe";
+=======
+	            String DATABASE_URL = "jdbc:mysql://localhost/cipa";
+>>>>>>> 4e569c1f0e300b4683fd4a1d63be90b39b674540
 	            String usuario = "root";
 	            String senha = "";
 	            this.connection = DriverManager.getConnection(DATABASE_URL, usuario, senha);
@@ -29,18 +33,17 @@ public class PessoaDao {
 	    }
 	
 	public List<Pessoa> listar() {
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM pessoas";
         List<Pessoa> retorno = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 Pessoa cliente = new Pessoa();
-                cliente.setCodigo(resultado.getInt("codigo"));
                 cliente.setNome(resultado.getString("nome"));
-                cliente.setEndereco(resultado.getString("endereco"));
-                cliente.setCidade(resultado.getString("cidade"));
-                cliente.setUf(resultado.getString("uf"));
+                cliente.setEmail(resultado.getString("email"));
+                cliente.setSenha(resultado.getString("senha"));
+                cliente.setTipo(resultado.getString("tipo_usuario"));
                 retorno.add(cliente);
             }
         } catch (SQLException ex) {
@@ -50,13 +53,13 @@ public class PessoaDao {
     }
 
     public boolean inserir(Pessoa cliente) {
-        String sql = "INSERT INTO cliente(nome, endereco, cidade, uf) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO pessoas(nome, email, senha, tipo_usuario) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
-            stmt.setString(2, cliente.getEndereco());
-            stmt.setString(3, cliente.getCidade());
-            stmt.setString(4, cliente.getUf());
+            stmt.setString(2, cliente.getEmail());
+            stmt.setString(3, cliente.getSenha());
+            stmt.setString(4, cliente.getTipo());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -66,14 +69,13 @@ public class PessoaDao {
     }
 
     public boolean alterar(Pessoa pessoa) {
-        String sql = "UPDATE cliente SET nome=?, cidade=?, endereco=?, uf=? WHERE codigo=?";
+        String sql = "UPDATE cliente SET nome=?, senha=?, tipo_usuario=? WHERE email=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, pessoa.getNome());
-            stmt.setString(2, pessoa.getCidade());
-            stmt.setString(3, pessoa.getEndereco());
-            stmt.setString(4, pessoa.getUf());
-            stmt.setInt(5, pessoa.getCodigo());
+            stmt.setString(2, pessoa.getSenha());
+            stmt.setString(3, pessoa.getTipo());
+            stmt.setString(4, pessoa.getEmail());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -82,11 +84,11 @@ public class PessoaDao {
         }
     }
 
-    public boolean remover(Integer codigo) {
-        String sql = "DELETE FROM cliente WHERE codigo=?";
+    public boolean remover(Integer email) {
+        String sql = "DELETE FROM cliente WHERE email=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, codigo);
+            stmt.setInt(1, email);
             stmt.execute();
             return true;
         } catch (SQLException ex) {
