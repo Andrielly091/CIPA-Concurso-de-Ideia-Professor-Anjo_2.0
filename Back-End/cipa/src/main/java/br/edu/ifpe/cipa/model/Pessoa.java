@@ -31,8 +31,4 @@ public class Pessoa {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
-	
-	
-
 }

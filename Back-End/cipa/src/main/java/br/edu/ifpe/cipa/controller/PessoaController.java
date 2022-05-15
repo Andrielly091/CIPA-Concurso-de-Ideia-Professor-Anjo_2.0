@@ -29,7 +29,6 @@ public class PessoaController {
 	@GetMapping("")
 	public List<Pessoa> list(){
 		
-		
 		return pessoaservice.listar();
 	}
 	
@@ -56,8 +55,4 @@ public class PessoaController {
 	public void update(@RequestBody Pessoa pessoa) {
 		pessoaservice.alterar(pessoa);
 	}
-
-	
-
-
 }
