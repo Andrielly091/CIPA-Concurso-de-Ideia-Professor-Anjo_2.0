@@ -8,6 +8,13 @@ vinculo varchar (150),
 PRIMARY KEY(id) 
 );
 
+CREATE TABLE `cipa`.`login`(
+    loginId int(4) AUTO_INCREMENT,
+    email varchar(50) NOT NULL,
+    senha varchar(20),
+    PRIMARY KEY(loginId)
+);
+
 INSERT INTO `cipa`.`instituicao`(`nome_da_empresa`,`vinculo`)
 VALUES ('IFPE','Cordenador');
 
@@ -29,6 +36,13 @@ VALUES ('Jadeilson','jadeilsom.m@gmail.com','123456','Aluno', NULL),
     ('ricson','ricson@gmail.com','123456','professor',1),
     ('Lavinia','lavinia@gmail.com','123456','Aluno', NULL);
 
+
+INSERT INTO `cipa`.`login`(email, senha)
+VALUES ('jadeilsom.m@gmail.com','123456'),
+	('joas@gmail.com','123456'),
+    ('andriely@gmail.com','123456'),
+    ('lavinia@gmail.com','123456');
+
 CREATE TABLE `cipa`.`concurso`(
 id INT AUTO_INCREMENT PRIMARY KEY,
 data_submissao date,
@@ -41,19 +55,35 @@ VALUES ('2022-05-01','2022-05-01 14:15:15.000','2022-05-01');
 
 CREATE TABLE `cipa`.`ideias`(
 id_ideias INT NOT NULL auto_increment,
-nome_do_lider varchar(150),
-nomes_da_equipe varchar(255),
+id_lider varchar(255),
 temas_impactados varchar(50),
 resumo_do_projeto varchar(700),
 video_demostrativo varchar(255),
 nota decimal(2),
 id_concurso INT,
 PRIMARY KEY (id_ideias),
-FOREIGN KEY (`id_concurso`) REFERENCES `cipa`.`concurso`(`id`)
+FOREIGN KEY (`id_concurso`) REFERENCES `cipa`.`concurso`(`id`),
+FOREIGN KEY (`id_lider`) REFERENCES `cipa`.`pessoas`(`email`)
 );
 
-INSERT INTO `cipa`.`ideias`(nome_do_lider,temas_impactados,nota, id_concurso)
-VALUES ('JOAS','Inovação',10, 1);
+INSERT INTO `cipa`.`ideias`(id_lider,temas_impactados,nota, id_concurso)
+VALUES ('joas@gmail.com','Inovação',10, 1);
+
+CREATE TABLE `cipa`.`eguipe`(
+id_pessoas VARCHAR(255),
+id_ideias INT,
+PRIMARY KEY (id_pessoas, id_ideias),
+FOREIGN KEY (`id_pessoas`) REFERENCES `cipa`.`pessoas` (`email`),
+FOREIGN KEY (`id_ideias`) REFERENCES `cipa`.`ideias` (`id_ideias`)
+);
+
+CREATE TABLE `cipa`.`notas_ideias`(
+id_pessoas VARCHAR(255),
+id_ideias INT,
+PRIMARY KEY (id_pessoas, id_ideias),
+FOREIGN KEY (`id_pessoas`) REFERENCES `cipa`.`pessoas` (`email`),
+FOREIGN KEY (`id_ideias`) REFERENCES `cipa`.`ideias` (`id_ideias`)
+);
 
 CREATE TABLE `cipa`.`banca`(
 id_pessoas VARCHAR(255),
