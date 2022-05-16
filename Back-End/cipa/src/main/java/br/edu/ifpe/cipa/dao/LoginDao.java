@@ -19,7 +19,7 @@ public class LoginDao {
 	public LoginDao() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-            String DATABASE_URL = "jdbc:mysql://localhost/ifpe_bd_cliente";
+            String DATABASE_URL = "jdbc:mysql://localhost/cipa";
             String usuario = "root";
             String senha = "";
             this.connection = DriverManager.getConnection(DATABASE_URL, usuario, senha);
@@ -30,17 +30,17 @@ public class LoginDao {
 	}
 
 	public List<Login> listar() {
-        String sql = "SELECT * FROM login WHERE loginId=?";
+        String sql = "SELECT * FROM login";
         List<Login> resposta = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 Login login = new Login();
-                login.setLoginId(resultado.getInt(1));
+                login.setLoginId(resultado.getInt("loginId"));
                 login.setEmail(resultado.getString("email"));
                 login.setSenha(resultado.getString("senha"));
-                login.setSenha(resultado.getString("loginId"));
+               
    
                 resposta.add(login);
             }
