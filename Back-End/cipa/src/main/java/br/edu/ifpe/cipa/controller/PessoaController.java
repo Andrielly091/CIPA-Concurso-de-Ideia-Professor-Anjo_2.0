@@ -57,7 +57,4 @@ public class PessoaController {
 		pessoaservice.alterar(pessoa);
 	}
 
-	
-
-
 }

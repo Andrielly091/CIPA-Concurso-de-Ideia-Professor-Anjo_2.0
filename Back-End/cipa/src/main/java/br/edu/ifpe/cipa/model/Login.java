@@ -1,11 +1,10 @@
 package br.edu.ifpe.cipa.model;
 
 public class Login {
+	
 	private int loginId;
 	private String email;
 	private String senha;
-	
-	
 	
 	public int getLoginId() {
 		return loginId;
@@ -25,7 +24,4 @@ public class Login {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
-
 }

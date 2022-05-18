@@ -20,7 +20,6 @@ import br.edu.ifpe.cipa.service.LoginService;
 	
 	LoginService loginservice = new LoginService();
 	
-	
 	@GetMapping("/{loginId}")
 	public ResponseEntity<Login> consultarUsuarioPorId(@PathVariable int loginId){
 		try {
