@@ -1,6 +1,6 @@
 package br.edu.ifpe.cipa.service;
 
-import java.util.List;
+import java.util.List; 
 
 import br.edu.ifpe.cipa.dao.LoginDao;
 import br.edu.ifpe.cipa.model.Login;
@@ -13,8 +13,10 @@ public class LoginService {
 		return logindao.listar();
 	}
 	
-	public void alterar(Login loginBd) {
+	public Login alterar(Login loginBd) {
 		logindao.alterar(loginBd);
+		return loginBd;
+		
 	}
 	
 	public void inserir(Login login) {
@@ -24,4 +26,10 @@ public class LoginService {
 	public void remover(int loginId) {
 		logindao.remover(loginId);
 	}
+
+	public void alterar(int loginId, String senha) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
