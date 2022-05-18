@@ -85,7 +85,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&family=Rubik+Mono+One&display=swap');;
-
             * {
     margin: 0;
     padding: 0;
@@ -174,7 +173,6 @@ export default {
       font-weight: bold;
       font-size: 26px;
       cursor: pointer;
-
   }
   .logo{
     margin-bottom: 6%;

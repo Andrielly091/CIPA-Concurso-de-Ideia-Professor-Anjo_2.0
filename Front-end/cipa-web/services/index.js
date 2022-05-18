@@ -16,4 +16,4 @@ const taskApi = async (method, endpoint, body) => fetch
   .request({ method, url: endpoint, data: body })
     .then(({ status, data }) => ({ status, data }));
 
-export default taskApi
+export default taskApi;
