@@ -1,6 +1,8 @@
 package br.edu.ifpe.cipa.controller;
 
 import java.util.List; 
+
+
 import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
@@ -20,19 +22,16 @@ import br.edu.ifpe.cipa.service.LoginService;
 
 @RestController
 @RequestMapping("/login")
-    public class LoginController {
-	
+    public class LoginController<senha> {
+
 	LoginService loginservice = new LoginService();
 	
-<<<<<<< HEAD
 	@GetMapping("")
 	public List<Login> list(){
 		
 		
 		return loginservice.listar();
 	}
-=======
->>>>>>> a9d79fcc4a043163726f8c233f534645da03d308
 	
 	@GetMapping("/{loginId}")
 	public ResponseEntity<Login> consultarUsuarioPorId(@PathVariable int loginId){
@@ -53,12 +52,11 @@ import br.edu.ifpe.cipa.service.LoginService;
 		loginservice.remover(id);
 	}
 	
-	@PutMapping("/alterar")
-	public void update(@RequestBody Login alterar) {
-		loginservice.alterar(alterar);
+	@PutMapping("/esqueceuSenha/{loginId}")
+	public void alterar(@PathVariable Integer loginId, @PathVariable String senha) {
+		loginservice.alterar(loginId, senha);
+	
 	}
-	
-	
 }
 
 
