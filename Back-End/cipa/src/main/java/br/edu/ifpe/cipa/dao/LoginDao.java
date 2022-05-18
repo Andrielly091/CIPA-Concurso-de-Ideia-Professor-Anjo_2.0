@@ -64,12 +64,11 @@ public class LoginDao {
 	        }
 	    }
 	 public boolean alterar(Login login) {
-	        String sql = "UPDATE login SET email=?, senha=? WHERE loginId=?";
+	        String sql = "UPDATE login SET senha=? WHERE loginId=?";
 	        try {
 	            PreparedStatement stmt = connection.prepareStatement(sql);
-	            stmt.setString(1, login.getEmail());
-	            stmt.setString(2, login.getSenha());
-	            stmt.setInt(3, login.getLoginId());
+	            stmt.setString(1, login.getSenha());
+	            stmt.setInt(2, login.getLoginId());
 	            
 	            stmt.execute();
 	            return true;
