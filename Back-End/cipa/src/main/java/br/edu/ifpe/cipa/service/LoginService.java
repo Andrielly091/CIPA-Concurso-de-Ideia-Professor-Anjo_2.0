@@ -1,5 +1,6 @@
 package br.edu.ifpe.cipa.service;
 
+import java.util.Iterator;
 import java.util.List; 
 
 import br.edu.ifpe.cipa.dao.LoginDao;
@@ -30,6 +31,18 @@ public class LoginService {
 	public void alterar(int loginId, String senha) {
 		// TODO Auto-generated method stub
 		
+	}
+	public boolean auth(String email, String senha) {
+		List<Login> listLogins = logindao.listar();
+		System.out.println("Params");
+		boolean value = false;
+		for (Iterator<Login> iterator = listLogins.iterator(); iterator.hasNext(); ) { 
+			Login l = (Login) iterator.next(); 
+			if (l.getEmail().equals(email) && l.getSenha().equals(senha)) {
+				value = true;
+			}
+		}
+		return 	value;
 	}
 
 }
