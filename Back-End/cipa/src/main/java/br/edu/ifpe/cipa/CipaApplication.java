@@ -9,5 +9,4 @@ public class CipaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CipaApplication.class, args);
 	}
-
 }

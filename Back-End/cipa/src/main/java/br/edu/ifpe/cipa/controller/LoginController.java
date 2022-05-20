@@ -34,6 +34,7 @@ public class LoginController<senha> {
 		return loginservice.listar();
 	}
 	
+
 	@PostMapping("")
 	public boolean auth(@RequestBody Login login) {
 		return loginservice.auth(login.getEmail(), login.getSenha());
