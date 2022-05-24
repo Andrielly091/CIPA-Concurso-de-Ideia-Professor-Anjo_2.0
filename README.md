@@ -1,6 +1,6 @@
 
 ## Bem vindo ao Cipa!
-<img src="https://i.imgur.com/HcLNjzn.png" class="logo">
+<img align="center" alt="cipa-Js" height="300" width="300" src="https://i.imgur.com/HcLNjzn.png" class="logo">
 
 ### 🖥 Desenvolvedores
 
