@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { getAll, add } from '../Helpers/pessoas'
 export default {
   name: 'cadastro',
   data() {
@@ -63,17 +64,10 @@ export default {
     }
   },
   methods: {
-    cadastrar () { 
-      if(!this.email.endsWith('discente.ifpe.edu.br')){
-        alert("Apenas email do IFPE");
-      }
-        else if(this.email == 'admin@discente.ifpe.edu.br' && this.senha == '12345'){
-        alert('Cadastro realizado com sucesso');
-        this.$router.push('/login');
-      }
-      else{
-        alert('Login ou senha incorreto!!!')
-      }
+    async cadastrar () { 
+      const data = await getAll();
+      console.log('data', data);
+      add({email: this.email, senha: this.senha, nome: 'test'});
     },
     entre(){
       this.$router.push('/login')

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const HOST = "localhost";
+const HOST = '192.168.18.170';
 const PORT = 8080;
 
 const fetch = axios.create({
