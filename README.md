@@ -4,14 +4,14 @@
 
 <div align="center">
   <a href="https://github.com/alunojoas">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=alunojoas&show_icons=true&theme=dark&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=alunojoas&layout=compact&langs_count=7&theme=dark"/>
+  <img height="150em" src="https://github-readme-stats.vercel.app/api?username=alunojoas&show_icons=true&theme=dark&include_all_commits=true&count_private=true"/>
+  <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=alunojoas&layout=compact&langs_count=7&theme=dark"/>
    <a href="https://github.com/jadeilsonm">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=jadeilsonm&show_icons=true&theme=dark&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jadeilsonm&layout=compact&langs_count=7&theme=dark"/>
+  <img height="150em" src="https://github-readme-stats.vercel.app/api?username=jadeilsonm&show_icons=true&theme=dark&include_all_commits=true&count_private=true"/>
+  <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jadeilsonm&layout=compact&langs_count=7&theme=dark"/>
   <a href="https://github.com/LaviniaX">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=LaviniaX&show_icons=true&theme=dark&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=LaviniaX&layout=compact&langs_count=7&theme=dark"/>
+  <img height="150em" src="https://github-readme-stats.vercel.app/api?username=LaviniaX&show_icons=true&theme=dark&include_all_commits=true&count_private=true"/>
+  <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=LaviniaX&layout=compact&langs_count=7&theme=dark"/>
 </div>
      
 </div>
