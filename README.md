@@ -1,4 +1,6 @@
+
 ## Bem vindo ao Cipa!
+<img src="https://i.imgur.com/HcLNjzn.png" class="logo">
 
 ### 🖥 Desenvolvedores
 
