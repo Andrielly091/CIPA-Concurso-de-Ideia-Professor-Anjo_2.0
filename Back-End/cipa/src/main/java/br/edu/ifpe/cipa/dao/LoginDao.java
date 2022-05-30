@@ -33,8 +33,8 @@ public class LoginDao {
                 resposta.add(login);
                 stmt.execute();
 				stmt.close();
-				connection.close();
             }
+			connection.close();
         } catch (SQLException e) {
             Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -51,7 +51,6 @@ public class LoginDao {
 	           
 	            stmt.execute();
 				stmt.close();
-				connection.close();
 	            return true;
 	        } catch (SQLException e) {
 	            Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
@@ -69,7 +68,6 @@ public class LoginDao {
 	            
 	            stmt.execute();
 				stmt.close();
-				connection.close();
 	            return true;
 	        } catch (SQLException e) {
 	            Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
@@ -86,7 +84,6 @@ public class LoginDao {
 	            
 	            stmt.execute();
 				stmt.close();
-				connection.close();
 	            return true;
 	        } catch (SQLException e) {
 	            Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
