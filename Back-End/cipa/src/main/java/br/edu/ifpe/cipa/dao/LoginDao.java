@@ -13,10 +13,7 @@ import java.util.logging.Logger;
 import br.edu.ifpe.cipa.model.Login;
 
 public class LoginDao {
-<<<<<<< HEAD
-	
-	Connection connection = Conexao.getConexaoMySQL();
-=======
+
 
 	Connection connection = Conexao.getConexaoMySQL();
 
@@ -43,7 +40,6 @@ public class LoginDao {
 
 		return resposta;
 	}
->>>>>>> newMerge
 
 	public boolean inserir(Login loginBd) throws ClassNotFoundException, SQLException {
 		String sql = "INSERT INTO login(email, senha) VALUES(?,?)";

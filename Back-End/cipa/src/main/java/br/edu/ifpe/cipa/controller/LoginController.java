@@ -27,20 +27,14 @@ import br.edu.ifpe.cipa.service.LoginService;
 public class LoginController<senha> {
 
 	LoginService loginservice = new LoginService();
-<<<<<<< HEAD
 
-=======
 	
 	@CrossOrigin
->>>>>>> a55bb55f770e90d8373876c3486fb85348e7dbd6
 	@GetMapping("")
 	public List<Login> list() throws ClassNotFoundException, SQLException{
 		System.out.println("====  List Login  ====");
 		return loginservice.listar();
 	}
-<<<<<<< HEAD
-
-=======
 	
 
 	@PostMapping("")
@@ -48,7 +42,6 @@ public class LoginController<senha> {
 		return loginservice.auth(login.getEmail(), login.getSenha());
 	}
 	
->>>>>>> a55bb55f770e90d8373876c3486fb85348e7dbd6
 	@GetMapping("/{loginId}")
 	public ResponseEntity<Login> consultarUsuarioPorId(@PathVariable int loginId) throws ClassNotFoundException, SQLException{
 		try {
