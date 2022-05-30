@@ -18,7 +18,7 @@ public class PessoaDao {
 		
 	 public PessoaDao() {
 	        try {
-	            Class.forName("com.mysql.jdbc.Driver");
+	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            String DATABASE_URL = "jdbc:mysql://localhost/cipa";
 	            String usuario = "root";
 	            String senha = "";

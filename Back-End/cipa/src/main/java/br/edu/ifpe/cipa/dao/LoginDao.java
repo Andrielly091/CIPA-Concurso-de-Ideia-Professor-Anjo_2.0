@@ -1,7 +1,7 @@
 package br.edu.ifpe.cipa.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,26 +10,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.edu.ifpe.cipa.model.ConexaoMysql;
 import br.edu.ifpe.cipa.model.Login;
 
 public class LoginDao {
 	
 	private Connection connection;
-	
-	public LoginDao() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-            String DATABASE_URL = "jdbc:mysql://localhost/cipa";
-            String usuario = "root";
-            String senha = "";
-            this.connection = DriverManager.getConnection(DATABASE_URL, usuario, senha);
-		}
-		catch (ClassNotFoundException | SQLException e) {
-            Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
-        }
-	}
 
-	public List<Login> listar() {
+	public List<Login> listar() throws ClassNotFoundException, SQLException {
+		Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
         String sql = "SELECT * FROM login";
         List<Login> resposta = new ArrayList<>();
         try {
@@ -41,15 +30,19 @@ public class LoginDao {
                 login.setEmail(resultado.getString("email"));
                 login.setSenha(resultado.getString("senha"));
                
-   
                 resposta.add(login);
+                stmt.execute();
+				stmt.close();
+				connection.close();
             }
         } catch (SQLException e) {
             Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
         }
+        
         return resposta;
     }
-	 public boolean inserir(Login loginBd) {
+	 public boolean inserir(Login loginBd) throws ClassNotFoundException, SQLException {
+		 Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
 	        String sql = "INSERT INTO login(email, senha) VALUES(?,?)";
 	        try {
 	            PreparedStatement stmt = connection.prepareStatement(sql);
@@ -57,13 +50,17 @@ public class LoginDao {
 	            stmt.setString(2, loginBd.getSenha());
 	           
 	            stmt.execute();
+				stmt.close();
+				connection.close();
 	            return true;
 	        } catch (SQLException e) {
 	            Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
+	            
 	            return false;
 	        }
 	    }
-	 public boolean alterar(Login login) {
+	 public boolean alterar(Login login) throws ClassNotFoundException, SQLException {
+		 Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
 	        String sql = "UPDATE login SET senha=? WHERE loginId=?";
 	        try {
 	            PreparedStatement stmt = connection.prepareStatement(sql);
@@ -71,21 +68,29 @@ public class LoginDao {
 	            stmt.setInt(2, login.getLoginId());
 	            
 	            stmt.execute();
+				stmt.close();
+				connection.close();
 	            return true;
 	        } catch (SQLException e) {
 	            Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
 	            return false;
 	        }
 	    }
-	 public boolean remover(int loginId) {
+	 public boolean remover(int loginId) throws ClassNotFoundException, SQLException {
+		 Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
 	        String sql = "DELETE FROM login WHERE loginId=?";
 	        try {
 	            PreparedStatement stmt = connection.prepareStatement(sql);
 	            stmt.setInt(1, loginId);
 	            stmt.execute();
+	            
+	            stmt.execute();
+				stmt.close();
+				connection.close();
 	            return true;
 	        } catch (SQLException e) {
 	            Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
+	          
 	            return false;
 	        }
 	    }

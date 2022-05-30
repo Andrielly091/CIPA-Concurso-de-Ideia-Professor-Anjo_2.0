@@ -1,5 +1,6 @@
 package br.edu.ifpe.cipa.controller;
 
+import java.sql.SQLException;
 import java.util.List; 
 
 
@@ -7,6 +8,7 @@ import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,24 +19,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpe.cipa.model.Login;
-
 import br.edu.ifpe.cipa.service.LoginService;
 
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/login")
-    public class LoginController<senha> {
+public class LoginController<senha> {
 
 	LoginService loginservice = new LoginService();
+<<<<<<< HEAD
 
+=======
+	
+	@CrossOrigin
+>>>>>>> a55bb55f770e90d8373876c3486fb85348e7dbd6
 	@GetMapping("")
-	public List<Login> list(){
-		
-		
+	public List<Login> list() throws ClassNotFoundException, SQLException{
+		System.out.println("====  List Login  ====");
 		return loginservice.listar();
 	}
+<<<<<<< HEAD
 
+=======
+	
+
+	@PostMapping("")
+	public boolean auth(@RequestBody Login login) throws ClassNotFoundException, SQLException {
+		return loginservice.auth(login.getEmail(), login.getSenha());
+	}
+	
+>>>>>>> a55bb55f770e90d8373876c3486fb85348e7dbd6
 	@GetMapping("/{loginId}")
-	public ResponseEntity<Login> consultarUsuarioPorId(@PathVariable int loginId){
+	public ResponseEntity<Login> consultarUsuarioPorId(@PathVariable int loginId) throws ClassNotFoundException, SQLException{
 		try {
 			return new ResponseEntity<Login>(loginservice.listar().get(loginId), HttpStatus.OK);
 			}catch(NoSuchElementException e) {
@@ -43,12 +59,12 @@ import br.edu.ifpe.cipa.service.LoginService;
 			
 	}
 	@PostMapping("/")
-	public void add(@RequestBody Login inserir) {
+	public void add(@RequestBody Login inserir) throws ClassNotFoundException, SQLException {
 		loginservice.inserir(inserir);
 	}
 	
 	@DeleteMapping("/remover/{id}")
-	public void remove(@PathVariable Integer id) {
+	public void remove(@PathVariable Integer id) throws ClassNotFoundException, SQLException {
 		loginservice.remover(id);
 	}
 	
