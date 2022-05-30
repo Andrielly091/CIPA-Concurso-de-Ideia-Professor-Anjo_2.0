@@ -1,5 +1,6 @@
 package br.edu.ifpe.cipa.service;
 
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List; 
 
@@ -10,21 +11,21 @@ public class LoginService {
 	
 	LoginDao logindao = new LoginDao();
 	
-	public List<Login> listar() {
+	public List<Login> listar() throws ClassNotFoundException, SQLException {
 		return logindao.listar();
 	}
 	
-	public Login alterar(Login loginBd) {
+	public Login alterar(Login loginBd) throws ClassNotFoundException, SQLException {
 		logindao.alterar(loginBd);
 		return loginBd;
 		
 	}
 	
-	public void inserir(Login login) {
+	public void inserir(Login login) throws ClassNotFoundException, SQLException {
 		logindao.inserir(login);
 	}
 	
-	public void remover(int loginId) {
+	public void remover(int loginId) throws ClassNotFoundException, SQLException {
 		logindao.remover(loginId);
 	}
 
@@ -32,7 +33,7 @@ public class LoginService {
 		// TODO Auto-generated method stub
 		
 	}
-	public boolean auth(String email, String senha) {
+	public boolean auth(String email, String senha) throws ClassNotFoundException, SQLException {
 		List<Login> listLogins = logindao.listar();
 		System.out.println("Params");
 		boolean value = false;

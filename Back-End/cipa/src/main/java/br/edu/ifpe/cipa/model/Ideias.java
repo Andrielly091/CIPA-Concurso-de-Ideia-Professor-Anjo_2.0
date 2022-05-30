@@ -3,7 +3,7 @@ package br.edu.ifpe.cipa.model;
 public class Ideias {
 	
 	private int idIdeias;
-	private int idLider;
+	private String idLider;
 	private int idConcurso;
 	private String temasImpactados;
 	private String resumoDoProjeto;
@@ -16,10 +16,10 @@ public class Ideias {
 	public void setIdIdeias(int idIdeias) {
 		this.idIdeias = idIdeias;
 	}
-	public int getIdLider() {
+	public String getIdLider() {
 		return idLider;
 	}
-	public void setIdLider(int idLider) {
+	public void setIdLider(String idLider) {
 		this.idLider = idLider;
 	}
 	public int getIdConcurso() {

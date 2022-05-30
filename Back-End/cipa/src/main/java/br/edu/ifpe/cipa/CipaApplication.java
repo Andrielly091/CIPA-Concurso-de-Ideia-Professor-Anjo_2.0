@@ -10,3 +10,4 @@ public class CipaApplication {
 		SpringApplication.run(CipaApplication.class, args);
 	}
 }
+ 
