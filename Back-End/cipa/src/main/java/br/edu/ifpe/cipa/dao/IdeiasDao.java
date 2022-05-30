@@ -5,13 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
-
-import br.edu.ifpe.cipa.model.ConexaoMysql;
 import br.edu.ifpe.cipa.model.Ideias;
 
 public class IdeiasDao {
-	private Connection connection;
-		
+
+	Connection connection = Conexao.getConexaoMySQL();
 		 
 		 public boolean inserir(Ideias ideia) {
 		        String sql = "INSERT INTO ideias(id_ideias, id_Lider, temas_impactados, reseumo_do_projeto, video_demostrativo, nota, id_concurso) VALUES(?,?,?,?,?,?,?)";
@@ -33,7 +31,6 @@ public class IdeiasDao {
 		    }
 		 
 		 public void consultar(Ideias ideias) throws ClassNotFoundException, SQLException{
-				Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
 				String sql = "INSERT INTO 'ideias'"
 						+ "('id_concurso','id_ideias','id_lider','nota','resumo_do_projeto','temas_impactados','video_demostrativo')"
 						+ "VALUES (? , ?, ?, ?, ?, ?, ?)";
