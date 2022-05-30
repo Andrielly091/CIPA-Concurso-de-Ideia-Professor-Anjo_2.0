@@ -25,17 +25,14 @@ import br.edu.ifpe.cipa.service.LoginService;
     public class LoginController<senha> {
 
 	LoginService loginservice = new LoginService();
-	
-<<<<<<< HEAD
-=======
+
 	@GetMapping("")
 	public List<Login> list(){
 		
 		
 		return loginservice.listar();
 	}
-	
->>>>>>> 2f382b2fd7c10fe147b4cd456cdeb9034aaa45d8
+
 	@GetMapping("/{loginId}")
 	public ResponseEntity<Login> consultarUsuarioPorId(@PathVariable int loginId){
 		try {
