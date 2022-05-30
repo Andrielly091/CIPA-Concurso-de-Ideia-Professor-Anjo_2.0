@@ -14,20 +14,7 @@ import br.edu.ifpe.cipa.model.Login;
 
 public class LoginDao {
 	
-	private Connection connection;
-	
-	public LoginDao() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-            String DATABASE_URL = "jdbc:mysql://localhost/cipa";
-            String usuario = "root";
-            String senha = "";
-            this.connection = DriverManager.getConnection(DATABASE_URL, usuario, senha);
-		}
-		catch (ClassNotFoundException | SQLException e) {
-            Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
-        }
-	}
+	Connection connection = Conexao.getConexaoMySQL();
 
 	public List<Login> listar() {
         String sql = "SELECT * FROM login";
