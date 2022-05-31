@@ -28,13 +28,14 @@ public class LoginController<senha> {
 
 	LoginService loginservice = new LoginService();
 
+
+	
+	@CrossOrigin
 	@GetMapping("")
 	public List<Login> list() throws ClassNotFoundException, SQLException{
 		System.out.println("====  List Login  ====");
 		return loginservice.listar();
 	}
-
-
 
 	@PostMapping("")
 	public boolean auth(@RequestBody Login login) throws ClassNotFoundException, SQLException {

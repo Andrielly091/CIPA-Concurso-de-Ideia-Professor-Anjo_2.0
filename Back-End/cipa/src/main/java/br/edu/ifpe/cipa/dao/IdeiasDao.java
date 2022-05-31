@@ -38,7 +38,7 @@ public class IdeiasDao {
 		    }
 		 
 		 public void consultar(Ideias ideias) throws ClassNotFoundException, SQLException{
-				
+
 				String sql = "INSERT INTO 'ideias'"
 						+ "('id_concurso','id_ideias','id_lider','nota','resumo_do_projeto','temas_impactados','video_demostrativo')"
 						+ "VALUES (? , ?, ?, ?, ?, ?, ?)";
