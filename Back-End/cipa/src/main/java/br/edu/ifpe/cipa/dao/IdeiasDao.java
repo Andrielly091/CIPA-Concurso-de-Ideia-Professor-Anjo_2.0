@@ -8,23 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import br.edu.ifpe.cipa.model.ConexaoMysql;
+
 import br.edu.ifpe.cipa.model.Ideias;
 
 public class IdeiasDao {
-	private Connection connection;
+	Connection connection = Conexao.getConexaoMySQL();
 
 		 public boolean inserir(Ideias ideia) throws ClassNotFoundException, SQLException {
-			    Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
 		        String sql = "INSERT INTO ideias( id_lider, temas_impactados, resumo_do_projeto, video_demostrativo, nota, id_concurso) VALUES (?,?,?,?,?,?)";
 		        try {
 		            PreparedStatement stmt = ( connection).prepareStatement(sql);
 		            
-		            stmt.setString(1, ideia.getIdLider());
-		            stmt.setInt(6, ideia.getIdConcurso());
-					stmt.setString(3, ideia.getResumoDoProjeto());
-					stmt.setString(2, ideia.getTemasImpactados());
-					stmt.setString(4, ideia.getVideoDemostrativo());
+		            stmt.setString(1, ideia.getId_lider());
+		            stmt.setInt(6, ideia.getId_concurso());
+					stmt.setString(3, ideia.getResumo_do_projeto());
+					stmt.setString(2, ideia.getTemas_Impactados());
+					stmt.setString(4, ideia.getVideo_demostrativo());
 					stmt.setFloat(5, ideia.getNota());
 					
 					stmt.execute();
@@ -39,18 +38,18 @@ public class IdeiasDao {
 		    }
 		 
 		 public void consultar(Ideias ideias) throws ClassNotFoundException, SQLException{
-				Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
+				
 				String sql = "INSERT INTO 'ideias'"
 						+ "('id_concurso','id_ideias','id_lider','nota','resumo_do_projeto','temas_impactados','video_demostrativo')"
 						+ "VALUES (? , ?, ?, ?, ?, ?, ?)";
 				PreparedStatement stmt = (PreparedStatement) ((java.sql.Connection) connection).prepareStatement(sql);
 				
-				stmt.setInt(1, ideias.getIdIdeias());
-				stmt.setString(2, ideias.getIdLider());
-				stmt.setInt(3, ideias.getIdConcurso());
-				stmt.setString(4, ideias.getTemasImpactados());
-				stmt.setString(5, ideias.getResumoDoProjeto());
-				stmt.setString(6, ideias.getVideoDemostrativo());
+				stmt.setInt(1, ideias.getId_ideias());
+				stmt.setString(2, ideias.getId_lider());
+				stmt.setInt(3, ideias.getId_concurso());
+				stmt.setString(4, ideias.getTemas_Impactados());
+				stmt.setString(5, ideias.getResumo_do_projeto());
+				stmt.setString(6, ideias.getVideo_demostrativo());
 				stmt.setFloat(7, ideias.getNota());
 				
 				stmt.execute();
@@ -66,12 +65,13 @@ public class IdeiasDao {
 	            ResultSet resultado = stmt.executeQuery();
 	            while (resultado.next()) {
 	                Ideias cliente = new Ideias();
-	                cliente.setIdIdeias(resultado.getInt("IdIdeias"));
-	                cliente.setIdLider(resultado.getString("IdLider"));
-	                cliente.setIdConcurso(resultado.getInt("IdConcurso"));
-	                cliente.setTemasImpactados(resultado.getString("TemasImpactados"));
-	                cliente.setResumoDoProjeto(resultado.getString("ResumoDoProjeto"));
-	                cliente.setVideoDemostrativo(resultado.getString("VideoDemostrativo"));
+	                System.out.println(cliente);
+	                cliente.setId_ideias(resultado.getInt("Id_Ideias"));
+	                cliente.setId_lider(resultado.getString("Id_Lider"));
+	                cliente.setId_concurso(resultado.getInt("Id_Concurso"));
+	                cliente.setTemas_Impactados(resultado.getString("Temas_Impactados"));
+	                cliente.setResumo_do_projeto(resultado.getString("Resumo_Do_Projeto"));
+	                cliente.setVideo_demostrativo(resultado.getString("Video_Demostrativo"));
 	                cliente.setNota(resultado.getFloat("Nota"));
 	            
 	                retorno.add(cliente);

@@ -41,10 +41,10 @@ public class IdeiasController {
 			return ideiasservice.inserir(ideias);
 		}
 		
-//		@PostMapping("/")
+//	    @PostMapping("/")
 //		public void add1(@RequestBody Ideias ideias) throws ClassNotFoundException, SQLException {
 //			ideiasservice.consultar(ideias);
-//		}
+//	}
 }
 
 

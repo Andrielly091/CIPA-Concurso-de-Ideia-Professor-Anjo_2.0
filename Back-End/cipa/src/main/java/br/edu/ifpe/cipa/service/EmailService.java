@@ -13,7 +13,6 @@ import javax.mail.internet.MimeMessage;
 public class EmailService {
 	public static void main(String[] args) {
 		
-	         
 	            final String username = "";
 	            final String password = "";
 
