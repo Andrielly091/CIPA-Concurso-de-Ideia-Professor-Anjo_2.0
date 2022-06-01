@@ -2,49 +2,48 @@ package br.edu.ifpe.cipa.model;
 
 public class Ideias {
 	
-	private int idIdeias;
-	private int idLider;
-	private int idConcurso;
-	private String temasImpactados;
-	private String resumoDoProjeto;
-	private String videoDemostrativo;
+	private int id_ideias;
+	private String id_lider;
+	private int id_concurso;
+	private String temas_Impactados;
+	private String resumo_do_projeto;
+	private String video_demostrativo;
 	private float nota;
 	
-	public int getIdIdeias() {
-		return idIdeias;
+	
+	public int getId_ideias() {
+		return id_ideias;
 	}
-	public void setIdIdeias(int idIdeias) {
-		this.idIdeias = idIdeias;
+	
+	public String getId_lider() {
+		return id_lider;
 	}
-	public int getIdLider() {
-		return idLider;
+	public void setId_lider(String id_lider) {
+		this.id_lider = id_lider;
 	}
-	public void setIdLider(int idLider) {
-		this.idLider = idLider;
+	public int getId_concurso() {
+		return id_concurso;
 	}
-	public int getIdConcurso() {
-		return idConcurso;
+	public void setId_concurso(int id_concurso) {
+		this.id_concurso = id_concurso;
 	}
-	public void setIdConcurso(int idConcurso) {
-		this.idConcurso = idConcurso;
+	public String getTemas_Impactados() {
+		return temas_Impactados;
 	}
-	public String getTemasImpactados() {
-		return temasImpactados;
+	public void setTemas_Impactados(String temas_Impactados) {
+		this.temas_Impactados = temas_Impactados;
 	}
-	public void setTemasImpactados(String temasImpactados) {
-		this.temasImpactados = temasImpactados;
+	public String getResumo_do_projeto() {
+		return resumo_do_projeto;
 	}
-	public String getResumoDoProjeto() {
-		return resumoDoProjeto;
+	public void setResumo_do_projeto(String resumo_do_projeto) {
+		this.resumo_do_projeto = resumo_do_projeto;
 	}
-	public void setResumoDoProjeto(String resumoDoProjeto) {
-		this.resumoDoProjeto = resumoDoProjeto;
+	public String getVideo_demostrativo() {
+		return video_demostrativo;
 	}
-	public String getVideoDemostrativo() {
-		return videoDemostrativo;
-	}
-	public void setVideoDemostrativo(String videoDemostrativo) {
-		this.videoDemostrativo = videoDemostrativo;
+	public void setVideo_demostrativo(String video_demostrativo) {
+		this.video_demostrativo = video_demostrativo;
 	}
 	public float getNota() {
 		return nota;
@@ -52,4 +51,8 @@ public class Ideias {
 	public void setNota(float nota) {
 		this.nota = nota;
 	}
+	public void setId_ideias(int id_ideias) {
+		this.id_ideias = id_ideias;
+	}
+	
 }

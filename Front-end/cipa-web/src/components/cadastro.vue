@@ -27,23 +27,23 @@
         </div>
           
       <i id="tipo" class="material-icons prefix">people</i>
-  <select id="usuario" class="browser-default">
+  <select id="usuario"  class="browser-default">
     <option value=""  disabled selected>Tipo de usuário</option>
-    <option value="1"  v-on:click="instituicao()">Instituição</option>
-    <option value="2">Estudante</option>
+    <option value="1" id="sumir">Instituição</option>
+    <option value="2" v-on:click="instituicao()">Estudante</option>
   </select>
 
    <div class="row">
           <div class="input-field col s6">
           <i class="material-icons prefix">location_city</i>
-          <input id="senha" v-model="senha" type="password" class="validate" placeholder="Digite sua senha:">
+          <input v-on:click="instituicao()" id="senha" v-model="senha" type="text" class="validate" placeholder="Digite sua empresa:">
         </div>
         </div>
 
          <div class="row">
           <div class="input-field col s6">
           <i class="material-icons prefix">assignment_ind</i>
-          <input id="senha" v-model="senha" type="text" class="validate" placeholder="Digite seu cargo:">
+          <input v-on:click="instituicao()" id="senha" v-model="senha" type="text" class="validate" placeholder="Digite seu cargo:">
         </div>
         </div>
 
@@ -78,6 +78,16 @@ export default {
     }
   },
   methods: {
+    
+    instituicao(){
+    var instituicao = document.getElementById('senha').value;
+    if(instituicao == instituicao){
+      
+      document.getElementById('senha').value = '';
+
+    }
+
+    },
     cadastrar () { 
       if(!this.email.endsWith('discente.ifpe.edu.br')){
         alert("Apenas email do IFPE");
@@ -100,7 +110,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&family=Rubik+Mono+One&display=swap');;
-
             * {
     margin: 0;
     padding: 0;
@@ -207,7 +216,6 @@ export default {
       font-weight: bold;
       font-size: 26px;
       cursor: pointer;
-
   }
   .logo{
     margin-bottom: 6%;

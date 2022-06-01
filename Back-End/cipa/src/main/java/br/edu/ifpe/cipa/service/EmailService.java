@@ -13,9 +13,8 @@ import javax.mail.internet.MimeMessage;
 public class EmailService {
 	public static void main(String[] args) {
 		
-	         
-	            final String username = "paulochico80";
-	            final String password = "paulo12345";
+	            final String username = "";
+	            final String password = "";
 
 	            Properties props = new Properties();
 	            props.put("mail.smtp.host", "smtp.gmail.com");
@@ -35,9 +34,9 @@ public class EmailService {
 
 	                Message message = new MimeMessage(session);
 	                message.setFrom(new InternetAddress("cipa@gmail.com"));
-	                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("adrilysilva8@gmail.com,leonardo.souza.lima@gmail.com"));
+	                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("adrilysilva8@gmail.com"));
 	                message.setSubject("Receitas de Código Adriely: Assunto do E-mail");
-	                message.setText("Olá.!! Esta e-mail foi enviado usando javamail");
+	                message.setText("Olá.!! Este e-mail foi enviado usando javamail");
 
 	                Transport.send(message);
 

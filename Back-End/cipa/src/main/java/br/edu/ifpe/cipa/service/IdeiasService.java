@@ -8,13 +8,14 @@ import br.edu.ifpe.cipa.model.Ideias;
 	public class IdeiasService {
 		IdeiasDao ideiasdao = new IdeiasDao();
 		
-		public void inserir(Ideias Ideias) {
-			ideiasdao.inserir(Ideias);
+		public boolean inserir(Ideias Ideias) throws ClassNotFoundException, SQLException {
+			return ideiasdao.inserir(Ideias);
 		}
 
 		public List<Ideias> listar() {
 			return ideiasdao.listar();
 		}
+		
 		public void consultar(Ideias ideias) throws ClassNotFoundException, SQLException {
 			ideiasdao.consultar(ideias);
 		}
