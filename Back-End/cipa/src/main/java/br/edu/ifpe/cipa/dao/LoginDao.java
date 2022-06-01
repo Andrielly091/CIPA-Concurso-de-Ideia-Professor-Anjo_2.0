@@ -80,8 +80,7 @@ public class LoginDao {
 	            PreparedStatement stmt = connection.prepareStatement(sql);
 	            stmt.setInt(1, loginId);
 	            stmt.execute();
-	            
-	            stmt.execute();
+	          
 				stmt.close();
 	            return true;
 	        } catch (SQLException e) {
