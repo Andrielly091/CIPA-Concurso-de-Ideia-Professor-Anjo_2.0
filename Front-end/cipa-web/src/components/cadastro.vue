@@ -25,9 +25,28 @@
           <input id="senha" v-model="senha" type="password" class="validate" placeholder="Digite sua senha:">
         </div>
         </div>
-            <div class="forgot-pass"> 
-      <p>Esqueceu sua senha?</p>
-    </div>
+          
+      <i id="tipo" class="material-icons prefix">people</i>
+  <select id="usuario" class="browser-default">
+    <option value=""  disabled selected>Tipo de usuário</option>
+    <option value="1"  v-on:click="instituicao()">Instituição</option>
+    <option value="2">Estudante</option>
+  </select>
+
+   <div class="row">
+          <div class="input-field col s6">
+          <i class="material-icons prefix">location_city</i>
+          <input id="senha" v-model="senha" type="password" class="validate" placeholder="Digite sua senha:">
+        </div>
+        </div>
+
+         <div class="row">
+          <div class="input-field col s6">
+          <i class="material-icons prefix">assignment_ind</i>
+          <input id="senha" v-model="senha" type="text" class="validate" placeholder="Digite seu cargo:">
+        </div>
+        </div>
+
          <div class="row2">
          
          <button v-on:click="cadastrar()" :disabled="!email || !senha" class="btn waves-effect waves-light" type="submit" name="action">CADASTRAR
@@ -37,11 +56,7 @@
                 <div class="has-login"> 
       <p>Você já tem uma conta? <a v-on:click="entre()">Entre.</a></p>
     </div>
-    <div class="media-icons">
-      <i class="fa-brands fa-facebook"></i>
-      <i class="fa-brands fa-twitter"></i>
-      <i class="fa-brands fa-google-plus-g"></i>
-    </div>
+    
                         </div>
                     </div>
                 <div class="division-2">
@@ -90,7 +105,24 @@ export default {
     margin: 0;
     padding: 0;
   }
+  #tipo{
+    margin-left: 21.5%;
+    margin-top: 2%;
+    font-size: 2rem;
+  }
+  
+ #usuario{
+  width: 48%;
+  border: 1px solid #1B2F49;
+   border: solid 0.3vh #1c2c44 !important;
+  text-align: left !important;
+  height: 35px !important;
+  margin-top: -5% !important;
+  border-radius: 5px !important;
+  margin-left: 28%;
+ }
   .forgot-pass p{
+
     color: #000080;
     font-family: 'Poppins', Arial;
     font-size: 14px;
@@ -102,6 +134,7 @@ export default {
         color: black;
     font-family: 'Poppins', Arial;
     font-size: 14px;
+    margin-left: -11%;
   }
   .has-login a{
     background-color: transparent;
@@ -160,7 +193,7 @@ export default {
   }
   .division-1 img{
     width: 280px;
-    margin-left: 34%;
+    margin-left: 28%;
   }
   .texts p{
       font-family: 'Poppins', Arial;
@@ -192,7 +225,7 @@ export default {
     width: 100vh;
   }
   .row2{
-    margin-left: 42%!important;
+    margin-left: 37%!important;
     margin-top: 3%;
   }
   .row2 button{
@@ -278,5 +311,6 @@ input{
   .content-index{
     margin-left:13%;
   }
+ 
   }
 </style>
