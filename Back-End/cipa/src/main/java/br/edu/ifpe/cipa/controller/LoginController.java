@@ -27,6 +27,8 @@ import br.edu.ifpe.cipa.service.LoginService;
 public class LoginController<senha> {
 
 	LoginService loginservice = new LoginService();
+
+
 	
 	@CrossOrigin
 	@GetMapping("")
@@ -34,12 +36,13 @@ public class LoginController<senha> {
 		System.out.println("====  List Login  ====");
 		return loginservice.listar();
 	}
-	
+
 	@PostMapping("")
 	public boolean auth(@RequestBody Login login) throws ClassNotFoundException, SQLException {
 		return loginservice.auth(login.getEmail(), login.getSenha());
 	}
 	
+
 	@GetMapping("/{loginId}")
 	public ResponseEntity<Login> consultarUsuarioPorId(@PathVariable int loginId) throws ClassNotFoundException, SQLException{
 		try {

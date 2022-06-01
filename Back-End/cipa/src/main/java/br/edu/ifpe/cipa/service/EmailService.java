@@ -17,7 +17,6 @@ import br.edu.ifpe.cipa.model.Email;
 public class EmailService {
 	public boolean enviarEmail(){
 		
-	         
 	            final String username = "";
 	            final String password = "";
 
