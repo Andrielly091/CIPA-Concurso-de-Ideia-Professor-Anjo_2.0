@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import br.edu.ifpe.cipa.model.Login;
 
 
@@ -16,6 +17,9 @@ public class LoginDao {
 	Connection connection = Conexao.getConexaoMySQL();
 
 	public List<Login> listar() throws ClassNotFoundException, SQLException {
+
+	
+
 		String sql = "SELECT * FROM login";
 		List<Login> resposta = new ArrayList<>();
 		try {
@@ -30,6 +34,7 @@ public class LoginDao {
 				resposta.add(login);
 				stmt.execute();
 
+
 				stmt.close();
 			}
 			connection.close();
@@ -40,6 +45,7 @@ public class LoginDao {
         
         return resposta;
     }
+
 	 
 	
 	public boolean inserir(Login loginBd) throws ClassNotFoundException, SQLException {
@@ -91,4 +97,5 @@ public class LoginDao {
 			return false;
 		}
 	}
+
 }
