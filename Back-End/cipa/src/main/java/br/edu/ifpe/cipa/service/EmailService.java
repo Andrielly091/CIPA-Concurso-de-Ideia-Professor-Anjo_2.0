@@ -11,7 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailService {
-	public static void main(String[] args) {
+	public boolean enviarEmail(){
 		
 	         
 	            final String username = "";
@@ -46,6 +46,7 @@ public class EmailService {
 	            } catch (MessagingException e) {
 	                throw new RuntimeException(e);
 	            }
+				return true;
 	        }
 
 }

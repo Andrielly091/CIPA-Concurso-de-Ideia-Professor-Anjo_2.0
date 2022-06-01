@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.edu.ifpe.cipa.model.ConexaoMysql;
 import br.edu.ifpe.cipa.model.Login;
 
 public class LoginDao {
@@ -18,7 +17,7 @@ public class LoginDao {
 	private Connection connection;
 
 	public List<Login> listar() throws ClassNotFoundException, SQLException {
-		Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
+		
         String sql = "SELECT * FROM login";
         List<Login> resposta = new ArrayList<>();
         try {
@@ -42,7 +41,7 @@ public class LoginDao {
         return resposta;
     }
 	 public boolean inserir(Login loginBd) throws ClassNotFoundException, SQLException {
-		 Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
+		
 	        String sql = "INSERT INTO login(email, senha) VALUES(?,?)";
 	        try {
 	            PreparedStatement stmt = connection.prepareStatement(sql);
@@ -59,7 +58,7 @@ public class LoginDao {
 	        }
 	    }
 	 public boolean alterar(Login login) throws ClassNotFoundException, SQLException {
-		 Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
+		 
 	        String sql = "UPDATE login SET senha=? WHERE loginId=?";
 	        try {
 	            PreparedStatement stmt = connection.prepareStatement(sql);
@@ -75,7 +74,7 @@ public class LoginDao {
 	        }
 	    }
 	 public boolean remover(int loginId) throws ClassNotFoundException, SQLException {
-		 Connection connection = (Connection) ConexaoMysql.getConexaoMySQL();
+		
 	        String sql = "DELETE FROM login WHERE loginId=?";
 	        try {
 	            PreparedStatement stmt = connection.prepareStatement(sql);
