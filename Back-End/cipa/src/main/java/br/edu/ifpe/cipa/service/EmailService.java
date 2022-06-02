@@ -1,5 +1,6 @@
 package br.edu.ifpe.cipa.service;
 
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -10,10 +11,12 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import br.edu.ifpe.cipa.dao.EmailDao;
+import br.edu.ifpe.cipa.model.Email;
+
 public class EmailService {
-	public static void main(String[] args) {
+	public boolean enviarEmail(){
 		
-	         
 	            final String username = "";
 	            final String password = "";
 
@@ -46,6 +49,20 @@ public class EmailService {
 	            } catch (MessagingException e) {
 	                throw new RuntimeException(e);
 	            }
+				return true;
 	        }
+	EmailDao emaildao = new EmailDao();
 
-}
+	public void inserir(Email inserir) throws ClassNotFoundException, SQLException {
+		emaildao.inserir(inserir);
+	}
+
+	public void remover(int emailID) throws ClassNotFoundException, SQLException {
+		emaildao.remover(emailID);
+	}
+
+	public void alterar(Email idMail, String senha) throws ClassNotFoundException, SQLException {
+		emaildao.alterar(idMail);
+		return;
+	
+}}

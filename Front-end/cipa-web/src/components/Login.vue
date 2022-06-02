@@ -18,10 +18,12 @@
           <i class="material-icons prefix">vpn_key</i>
           <input id="senha" v-model="senha" type="password" class="validate" placeholder="Digite sua senha:">
         </div>
+        
         </div>
             <div class="forgot-pass"> 
       <p>Esqueceu sua senha?</p>
     </div>
+    
          <div class="row2">
          
          <button v-on:click="logar()" :disabled="!email || !senha" class="btn waves-effect waves-light" type="submit" name="action">ENTRAR
@@ -31,11 +33,7 @@
                 <div class="has-login"> 
       <p>Não tem uma conta? <a v-on:click="cadastre()">Cadastre-se.</a></p>
     </div>
-    <div class="media-icons">
-      <i class="fa-brands fa-facebook"></i>
-      <i class="fa-brands fa-twitter"></i>
-      <i class="fa-brands fa-google-plus-g"></i>
-    </div>
+    
                         </div>
                     </div>
                 <div class="division-2">
@@ -84,6 +82,7 @@ export default {
     padding: 0;
   }
   .forgot-pass p{
+    margin-left: -7%;
     color: #000080;
     font-family: 'Poppins', Arial;
     font-size: 14px;
@@ -106,7 +105,7 @@ export default {
     cursor: pointer;
   }
   .has-login{
-    margin-left: 43%;
+    margin-left: 34%;
     margin-top: 2%;
   }
   html{
@@ -153,7 +152,7 @@ export default {
   }
   .division-1 img{
     width: 280px;
-    margin-left: 34%;
+    margin-left: 28%;
   }
   .texts p{
       font-family: 'Poppins', Arial;
@@ -185,8 +184,8 @@ export default {
     width: 100vh;
   }
   .row2{
-    margin-left: 42%!important;
-    margin-top: 3%;
+    margin-left: 39%!important;
+    margin-top: 2%;
   }
   .row2 button{
       background-color: #1B2F49 !important;

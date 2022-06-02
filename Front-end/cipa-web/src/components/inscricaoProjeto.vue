@@ -16,26 +16,26 @@
         <div class="row">
              <div class="input-field col s6">
           <i class="material-icons prefix">group</i>
-          <input id="nomeIntegrantes" v-model="nomeIntegrantes" type="text" class="validate" placeholder="Nome dos Integrantes:">
+          <input id="nomeIntegrantes" v-model="NomeIntegrantes" type="text" class="validate" placeholder="Nome dos Integrantes:">
         </div>
         </div>
         <div class="row">
           <div class="input-field col s6">
           <i class="material-icons prefix">category</i>
-          <select>
-            <option value="" disabled selected>SELECIONE UMA CATEGORIA</option>
-            <option value="1">ERRADIAÇÃO DA POBREZA</option>
-            <option value="2">FOME ZERO</option>
-            <option value="3">BOA SAÚDE E BEM-ESTAR</option>
-            <option value="4">EDUCAÇÃO DE QUALIDADE</option>
-            <option value="5">IGUALDADE DE GÊNERO</option>
-            <option value="6">ÁGUA LIMPA E SANIAMENTO</option>
-            <option value="7">ENERGIA ACESSÍVEL E LIMPA</option>
-            <option value="8">EMPREGO DIGNO E CRESCIMNENTO ECONÔMICO</option>
-            <option value="9">INDÚSTRIA, INOVAÇÃO E INFRAESTRUTURA</option>
-            <option value="10">REDUÇÃO DAS DESIGUALDADES</option>
-            <option value="11">CIDADES E COMUNIDADES SUSTENTÁVEIS</option>
-            <option value="12">CONSUMO E PRODUÇÃO RESPONSÁVEIS</option>
+          <select v-model = "category">
+            <option value="" disabled selected>Selecione uma Categoria</option>
+            <option value="Erradicação da Pobreza">Erradicação da Pobreza</option>
+            <option value="Fome">Fome</option>
+            <option value="Saúde e Bem Estar">Saúde e Bem Estar</option>
+            <option value="Educação">Educação</option>
+            <option value="igualdade de Género">igualdade de Género</option>
+            <option value="Água e Sarneamento Básico">Água e Sarneamento Básico</option>
+            <option value="Energia Sustentável">Energia Sustentável</option>
+            <option value="Emprego e Economia">Emprego e Economia</option>
+            <option value="Indústria, Inovação e Infraestrutura">Indústria, Inovação e Infraestrutura</option>
+            <option value="Redução de Desigualdade">Redução de Desigualdade</option>
+            <option value="Comunidade">Comunidade</option>
+            <option value="Tecnologia">Tecnologia</option>
 </select>
         </div>
         </div>
@@ -66,11 +66,7 @@
                 <div class="has-login"> 
       <p>Você já tem uma conta? <a v-on:click="entre()">Entre.</a></p>
     </div>
-    <div class="media-icons">
-      <i class="fa-brands fa-facebook"></i>
-      <i class="fa-brands fa-twitter"></i>
-      <i class="fa-brands fa-google-plus-g"></i>
-    </div>
+   
                         </div>
                     </div>
                 <div class="division-2">
@@ -88,7 +84,10 @@ export default {
   name: 'inscricaoProjeto',
   data() {
     return {
+      category: '',
+      NomeIntegrantes: '',
       títuloProjeto: '',
+      LinkDoVideo: '',
       descricao: '',
     }
   },
@@ -97,6 +96,8 @@ export default {
   },
   methods: {
     inscrever () { 
+       
+       console.log (this.category, 'category')
         this.$router.push('/');
     },
     entre(){
@@ -166,15 +167,7 @@ export default {
     font-size: 2.8rem;
     margin-left: 14%;
   }
-  .fa-google-plus-g{
-    color:#e34133;
-  }
-  .fa-twitter{
-    color: #00acee;
-  }  
-  .fa-facebook{
-    color: #3b5998;
-  }
+ 
   .division-1 {
     width:43.3vw;
   }
@@ -195,7 +188,7 @@ export default {
       font-size: 14px;
   }
   .logo{
-    margin-bottom: 6%;
+    margin-bottom: 4%;
   }
   .texts{
       margin-left: 27%;
@@ -217,6 +210,7 @@ export default {
       background-color: #1B2F49 !important;
       padding-left: 45px;
       padding-right: 45px;
+      margin-left: -35px;
   }
   
   .division-2 {

@@ -1,5 +1,6 @@
 package br.edu.ifpe.cipa.controller;
 
+import java.sql.SQLException;
 import java.util.List; 
 
 
@@ -26,22 +27,24 @@ import br.edu.ifpe.cipa.service.LoginService;
 public class LoginController<senha> {
 
 	LoginService loginservice = new LoginService();
+
+
 	
 	@CrossOrigin
 	@GetMapping("")
-	public List<Login> list(){
+	public List<Login> list() throws ClassNotFoundException, SQLException{
 		System.out.println("====  List Login  ====");
 		return loginservice.listar();
 	}
-	
 
 	@PostMapping("")
-	public boolean auth(@RequestBody Login login) {
+	public boolean auth(@RequestBody Login login) throws ClassNotFoundException, SQLException {
 		return loginservice.auth(login.getEmail(), login.getSenha());
 	}
 	
+
 	@GetMapping("/{loginId}")
-	public ResponseEntity<Login> consultarUsuarioPorId(@PathVariable int loginId){
+	public ResponseEntity<Login> consultarUsuarioPorId(@PathVariable int loginId) throws ClassNotFoundException, SQLException{
 		try {
 			return new ResponseEntity<Login>(loginservice.listar().get(loginId), HttpStatus.OK);
 			}catch(NoSuchElementException e) {
@@ -50,12 +53,12 @@ public class LoginController<senha> {
 			
 	}
 	@PostMapping("/")
-	public void add(@RequestBody Login inserir) {
+	public void add(@RequestBody Login inserir) throws ClassNotFoundException, SQLException {
 		loginservice.inserir(inserir);
 	}
 	
 	@DeleteMapping("/remover/{id}")
-	public void remove(@PathVariable Integer id) {
+	public void remove(@PathVariable Integer id) throws ClassNotFoundException, SQLException {
 		loginservice.remover(id);
 	}
 	
