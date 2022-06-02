@@ -6,7 +6,7 @@ export const getAll = async () => api('GET', 'pessoas')
 export const getForOne = async (id) => api('GET', `pessoas/${id}`)
   .then(({ data }) => data);
 
-export const add = async (description) => api('POST', 'pessoas', { description })
+export const add = async (description) => await api('POST', 'pessoas/', description)
   .then(getAll);
 
 export const rm = async (id) => api('DELETE', `pessoas/${id}`)

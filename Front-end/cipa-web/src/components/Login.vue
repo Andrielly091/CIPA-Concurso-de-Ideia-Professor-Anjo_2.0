@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { add } from '../Helpers/login';
 export default {
   name: 'login',
   data() {
@@ -57,16 +58,14 @@ export default {
     }
   },
   methods: {
-    logar () { 
-      if(!this.email.endsWith('discente.ifpe.edu.br')){
-        alert("Apenas email do IFPE!");
-      }
-        else if(this.email == 'admin@discente.ifpe.edu.br' && this.senha == '12345'){
-        alert('Logado com sucesso!');
-        this.$router.push('/');
-      }
-      else{
-        alert('Login ou senha incorreto!')
+    async logar () { 
+      const obj = { email: this.email, senha: this.senha}
+      const data = await add(obj)
+      console.log(obj);
+      if (data) {
+        this.$router.push('/')
+      } else {        
+        alert('Usuario ou senha errada!')
       }
     },
     cadastre(){

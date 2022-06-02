@@ -54,20 +54,26 @@
 </template>
 
 <script>
-import { getAll, add } from '../Helpers/pessoas'
+import { add } from '../Helpers/pessoas';
+import { addLogin } from '../Helpers/login';
 export default {
   name: 'cadastro',
   data() {
     return {
       email: '',
       senha: '',
+      nomeCompleto: '',
     }
   },
   methods: {
     async cadastrar () { 
-      const data = await getAll();
+      const obj = {email: this.email, senha: this.senha}
+      console.log(obj);
+      await addLogin(obj);
+      const objPessoa = {nome: this.nomeCompleto, email: this.email, tipo: 'aluno' }
+      await add(objPessoa)
+      const data = await fetch('http://192.168.18.170:8080/login').then((result) => result.json())
       console.log('data', data);
-      add({email: this.email, senha: this.senha, nome: 'test'});
     },
     entre(){
       this.$router.push('/login')

@@ -1,13 +1,16 @@
 import api from "../services";
 
-export const getAll = async () => api('GET', 'login')
+export const getAll = async () => await api('GET', 'login')
   .then(({ data }) => data);
 
 export const getForOne = async (id) => api('GET', `login/${id}`)
   .then(({ data }) => data);
 
-export const add = async (description) => api('POST', 'login', { description })
-  .then(getAll);
+export const addLogin = async (description) => await api('POST', 'login/', description)
+  .then(({ data }) => data);
+
+export const add = async (description) => await api('POST', 'login', description)
+  .then(({ data }) => data);
 
 export const rm = async (id) => api('DELETE', `login/${id}`)
   .then(getForOne);

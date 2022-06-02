@@ -1,9 +1,9 @@
 import api from "../services";
 
-export const getAll = async () => api('GET', 'ideias')
+export const getAll = async () => await api('GET', 'ideias')
   .then(({ data }) => data);
 
-export const getForOne = async (id) => api('GET', `ideias/${id}`)
+export const getForOne = async (id) => await api('GET', `ideias/${id}`)
   .then(({ data }) => data);
 
 export const add = async (description) => api('POST', 'ideias', { description })
