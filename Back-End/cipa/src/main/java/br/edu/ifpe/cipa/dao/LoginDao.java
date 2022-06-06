@@ -30,10 +30,7 @@ public class LoginDao {
 				login.setSenha(resultado.getString("senha"));
 
 				resposta.add(login);
-				stmt.execute();
-				stmt.close();
 			}
-			connection.close();
 		} catch (SQLException e) {
 			Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
 		}

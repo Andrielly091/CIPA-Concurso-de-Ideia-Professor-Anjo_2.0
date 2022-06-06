@@ -1,4 +1,4 @@
-package br.edu.ifpe.cipa;
+package br.edu.ifpe.cipa.config;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override 
     protected void configure(HttpSecurity http) throws Exception { 
         http.cors().configurationSource(corsConfigurationSource()); 
+        http.csrf().disable().authorizeRequests().anyRequest().permitAll();
     }
 	@Bean
     CorsConfigurationSource corsConfigurationSource() {
