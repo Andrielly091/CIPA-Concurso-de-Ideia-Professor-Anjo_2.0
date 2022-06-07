@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 
-
 public class Pessoa {
 	private int id;
 	@JsonInclude(Include.NON_NULL)
 	@NotNull(message="name")
 	private String nome;
 	@JsonInclude(Include.NON_NULL)
+//	@Column(unique = true)
 	@Email(message = "Informe um email valido")
 	private String email;
 	@Size(min = 8, max = 200, message = "About Me must be between 8 and 200 characters")

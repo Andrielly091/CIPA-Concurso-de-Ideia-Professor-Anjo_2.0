@@ -6,8 +6,8 @@ import lombok.Data;
 public class Emaill {
 	
 	private String awnerRef;
-	private String emailFrom;
-	private String emailTo;
+	private String from;
+	private String to;
 	private String subject;
 	private String text;
 	public String getAwnerRef() {
@@ -16,17 +16,17 @@ public class Emaill {
 	public void setAwnerRef(String awnerRef) {
 		this.awnerRef = awnerRef;
 	}
-	public String getEmailFrom() {
-		return emailFrom;
+	public String getFrom() {
+		return from;
 	}
-	public void setEmailFrom(String emailFrom) {
-		this.emailFrom = emailFrom;
+	public void setFrom(String from) {
+		this.from = from;
 	}
-	public String getEmailTo() {
-		return emailTo;
+	public String getTo() {
+		return to;
 	}
-	public void setEmailTo(String emailTo) {
-		this.emailTo = emailTo;
+	public void setTo(String to) {
+		this.to = to;
 	}
 	public String getSubject() {
 		return subject;
@@ -40,6 +40,7 @@ public class Emaill {
 	public void setText(String text) {
 		this.text = text;
 	}
+
 	
 	
 	

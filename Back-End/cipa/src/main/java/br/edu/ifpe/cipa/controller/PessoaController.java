@@ -3,6 +3,7 @@ package br.edu.ifpe.cipa.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ import br.edu.ifpe.cipa.service.SendEmailService;
 public class PessoaController {
 	
 	@Autowired
-	private SendEmailService email;
+	private SendEmailService emailService;
 	
 	PessoaService pessoaservice = new PessoaService();
 	
@@ -38,6 +39,10 @@ public class PessoaController {
 		this.encoder = encoder;
 	}
 	
+	@PostMapping("/email")
+    public void enviarEmail(@RequestBody Emaill email) throws MessagingException {
+        emailService.enviarEmail(email);
+    }
 	
 	@GetMapping("")
 	public ResponseEntity<List<Pessoa>> list(){
@@ -63,16 +68,16 @@ public class PessoaController {
 	}
 	
 	@PostMapping("/")
-	public void add(@Valid @RequestBody Pessoa pessoa) {
+	public void add(@Valid @RequestBody Pessoa pessoa) throws MessagingException {
 		System.out.println("===== inserir Pessoas ====");
 		pessoa.setSenha(encoder.encode(pessoa.getSenha()));
 		Emaill email1 = new Emaill();
-		email1.setEmailTo("jadeilsom.m@gmail.com");
-	    email1.setEmailFrom("jadeilsonm17@gmail.com");
+		email1.setFrom("jadeilsonm17@gmail.com");
+	    email1.setTo("jadeilsom.m@gmail.com");
 	    email1.setSubject("teste");
 	    email1.setText("Teste de envio de email java");
 	    email1.setAwnerRef("Cipa");
-		email.sendEmail(email1);
+	    emailService.enviarEmail(email1);
 		pessoaservice.inserir(pessoa);
 	}
 	
