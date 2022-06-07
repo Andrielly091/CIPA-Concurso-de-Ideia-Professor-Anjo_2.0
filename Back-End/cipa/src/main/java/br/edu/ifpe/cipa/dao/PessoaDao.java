@@ -11,11 +11,11 @@ import java.util.logging.Logger;
 
 import br.edu.ifpe.cipa.model.Pessoa;
 
-public class PessoaDao { 
-	
-	Connection connection = Conexao.getConexaoMySQL();
-	
-	public List<Pessoa> listar() {
+public class PessoaDao {
+
+    Connection connection = Conexao.getConexaoMySQL();
+
+    public List<Pessoa> listar() {
         String sql = "SELECT * FROM pessoas";
         List<Pessoa> retorno = new ArrayList<>();
         try {
@@ -26,9 +26,11 @@ public class PessoaDao {
                 cliente.setId(resultado.getInt("id"));
                 cliente.setNome(resultado.getString("nome"));
                 cliente.setEmail(resultado.getString("email"));
+                cliente.setSenha(resultado.getString("senha"));
                 cliente.setTipo(resultado.getString("tipo_usuario"));
                 retorno.add(cliente);
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -36,11 +38,14 @@ public class PessoaDao {
     }
 
     public boolean inserir(Pessoa cliente) {
-        String sql = "INSERT INTO pessoas(nome, email, tipo_usuario) VALUES(?,?,?)";
+        System.out.println("====== Inserir ======");
+        String sql = "INSERT INTO pessoas(nome, email,senha, tipo_usuario) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, cliente.getNome());
+            stmt.setString(1, cliente.getNome().substring(0, 1).toUpperCase()
+                    + cliente.getNome().substring(1));
             stmt.setString(2, cliente.getEmail());
+            stmt.setString(3, cliente.getSenha());
             stmt.setString(4, cliente.getTipo());
             stmt.execute();
             return true;
@@ -51,12 +56,14 @@ public class PessoaDao {
     }
 
     public boolean alterar(Pessoa pessoa) {
-        String sql = "UPDATE cliente SET nome=?, emial=?, tipo_usuario=? WHERE id=?";
+        String sql = "UPDATE pessoas SET nome=?, email=?, senha=?, tipo_usuario=? WHERE id=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, pessoa.getNome());
             stmt.setString(2, pessoa.getEmail());
-            stmt.setString(3, pessoa.getTipo());
+            stmt.setString(3, pessoa.getSenha());
+            stmt.setString(4, pessoa.getTipo());
+            stmt.setInt(5, pessoa.getId());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -67,8 +74,8 @@ public class PessoaDao {
 
     public boolean remover(Integer id) {
         String sql = "DELETE FROM cliente WHERE id=?";
-        try {        	
-        	PreparedStatement stmt = connection.prepareStatement(sql);
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, id);
             stmt.execute();
             return true;

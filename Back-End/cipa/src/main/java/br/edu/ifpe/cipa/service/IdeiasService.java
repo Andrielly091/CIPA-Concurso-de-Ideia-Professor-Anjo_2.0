@@ -2,9 +2,12 @@ package br.edu.ifpe.cipa.service;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import br.edu.ifpe.cipa.dao.IdeiasDao;
 import br.edu.ifpe.cipa.model.Ideias;
-
+@Service
 	public class IdeiasService {
 		IdeiasDao ideiasdao = new IdeiasDao();
 		
