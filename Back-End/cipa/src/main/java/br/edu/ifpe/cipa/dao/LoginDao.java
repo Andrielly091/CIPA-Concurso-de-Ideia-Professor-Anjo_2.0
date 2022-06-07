@@ -29,12 +29,16 @@ public class LoginDao {
 				login.setSenha(resultado.getString("senha"));
 
 				resposta.add(login);
+<<<<<<< HEAD
 				stmt.execute();
 
 				stmt.close();
 			}
 			connection.close();
 
+=======
+			}
+>>>>>>> main
 		} catch (SQLException e) {
 			Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
 		}

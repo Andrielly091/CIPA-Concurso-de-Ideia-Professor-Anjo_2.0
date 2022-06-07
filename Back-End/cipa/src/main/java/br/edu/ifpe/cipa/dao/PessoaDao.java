@@ -30,7 +30,6 @@ public class PessoaDao {
                 cliente.setTipo(resultado.getString("tipo_usuario"));
                 retorno.add(cliente);
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
         }

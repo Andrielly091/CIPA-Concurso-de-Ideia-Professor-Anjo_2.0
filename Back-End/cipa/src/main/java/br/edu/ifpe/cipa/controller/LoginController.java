@@ -3,7 +3,11 @@ package br.edu.ifpe.cipa.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+<<<<<<< HEAD
 import java.util.NoSuchElementException;
+=======
+import java.util.NoSuchElementException;	
+>>>>>>> main
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,9 +30,15 @@ import br.edu.ifpe.cipa.service.LoginService;
 public class LoginController<senha> {
 
 	LoginService loginservice = new LoginService();
-
+	
 	private final PasswordEncoder encoder;
 
+<<<<<<< HEAD
+	private final PasswordEncoder encoder;
+
+=======
+	
+>>>>>>> main
 	public LoginController(PasswordEncoder encoder) {
 		super();
 		this.encoder = encoder;
@@ -40,6 +50,7 @@ public class LoginController<senha> {
 		System.out.println("====  List Login  ====");
 		return loginservice.listar();
 	}
+<<<<<<< HEAD
 
 	@PostMapping("")
 	public ResponseEntity<Object> auth(@RequestBody Pessoa login) throws SQLException {
@@ -52,6 +63,27 @@ public class LoginController<senha> {
 		boolean valid = encoder.matches(login.getSenha(), value.getSenha());
 		System.out.println(valid);
 
+=======
+	
+	@GetMapping("/enviar")
+	public void enviar(){
+		loginservice.sendEmail();
+	}
+	
+
+	@PostMapping("")
+	public ResponseEntity<Object> auth (@RequestBody Pessoa login) throws SQLException {
+		System.out.println("===== Autenticação ====");
+		Pessoa value = loginservice.auth(login.getEmail(), login.getSenha());
+		if((value == null)) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(value);
+		}
+
+	
+		boolean valid = encoder.matches(login.getSenha(), value.getSenha());
+		System.out.println(valid);
+		
+>>>>>>> main
 		if (valid == true) {
 			value.setSenha(null);
 			value.setAuth(true);
@@ -64,9 +96,17 @@ public class LoginController<senha> {
 			value.setAuth(false);
 			value.setTipo(null);
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(value);
+<<<<<<< HEAD
 
 		}
 
+=======
+			
+		}
+		
+		
+		
+>>>>>>> main
 	}
 
 	@GetMapping("/{loginId}")

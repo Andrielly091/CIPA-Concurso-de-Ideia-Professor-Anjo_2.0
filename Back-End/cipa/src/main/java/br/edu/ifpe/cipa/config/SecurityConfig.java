@@ -15,10 +15,17 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+<<<<<<< HEAD
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().configurationSource(corsConfigurationSource());
+=======
+	
+	@Override 
+    protected void configure(HttpSecurity http) throws Exception { 
+        http.cors().configurationSource(corsConfigurationSource()); 
+>>>>>>> main
         http.csrf().disable().authorizeRequests().anyRequest().permitAll();
     }
 
