@@ -54,17 +54,17 @@ public class PessoaController {
 	}
 
 	@PostMapping("/")
-	public void add(@Valid @RequestBody Pessoa pessoa, @PathVariable Integer id) {
+	public boolean add(@Valid @RequestBody Pessoa pessoa) {
 		System.out.println("===== inserir Pessoas ====");
-		System.out.println(id);
+//		System.out.println(id);
 		pessoa.setSenha(encoder.encode(pessoa.getSenha()));
-		pessoaservice.inserir(pessoa);
+		return pessoaservice.inserir(pessoa);
 	}
 	
 	@GetMapping("/findEmail/{email}")
 	public Pessoa findByEmail(@PathVariable String email) {
 		System.out.println("Find email");
-		System.out.println(email);
+//		System.out.println(email);
 		List<Pessoa> allPessoas = pessoaservice.listar();
 		Pessoa value = null;
 		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext(); ) { 
