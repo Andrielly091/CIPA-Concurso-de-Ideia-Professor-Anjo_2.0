@@ -28,11 +28,11 @@ public class PessoaService {
 		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext(); ) { 
 			Pessoa p = iterator.next(); 
 			int id = pessoa.getId();
-			if (p.getEmail().equals(id)) {
+			if (p.getEmail().equals(pessoa.getEmail())) {
 				value = true;
 			}
 		}
-		if(value == true) {
+		if(value == false) {
 			pessoadao.inserir(pessoa);
 			return true;
 		} else {
