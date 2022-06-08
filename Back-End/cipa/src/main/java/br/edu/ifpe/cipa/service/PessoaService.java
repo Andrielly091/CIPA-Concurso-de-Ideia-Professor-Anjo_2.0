@@ -1,19 +1,16 @@
 package br.edu.ifpe.cipa.service;
 
+import java.util.Iterator;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpe.cipa.dao.PessoaDao;
-import br.edu.ifpe.cipa.model.Emaill;
 import br.edu.ifpe.cipa.model.Pessoa;
 
 @Service
 public class PessoaService {
 	
-	@Autowired
-	private SendEmailService emailSend;
 	
 	PessoaDao pessoadao = new PessoaDao();
 	
@@ -25,15 +22,22 @@ public class PessoaService {
 		pessoadao.alterar(pessoa);
 	}
 	
-	public void inserir(Pessoa pessoa) {
-//		Emaill email = new Emaill();
-//		email.setEmailTo("jadeilsom@gmail.com");
-//	    email.setEmailFrom("jadeilsonm17@gmail.com");
-//	    email.setSubject("teste");
-//	    email.setText("Teste de envio de email java");
-//	    email.setAwnerRef("Cipa");
-//		emailSend.sendEmail(email);
-		pessoadao.inserir(pessoa);
+	public boolean inserir(Pessoa pessoa) {
+		List<Pessoa> allPessoas = pessoadao.listar();
+		var value = false;
+		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext(); ) { 
+			Pessoa p = iterator.next(); 
+			int id = pessoa.getId();
+			if (p.getEmail().equals(id)) {
+				value = true;
+			}
+		}
+		if(value == true) {
+			pessoadao.inserir(pessoa);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void remover(int id) {

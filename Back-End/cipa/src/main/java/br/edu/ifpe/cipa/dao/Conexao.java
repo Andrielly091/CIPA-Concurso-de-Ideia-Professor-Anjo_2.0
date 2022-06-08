@@ -20,7 +20,7 @@ public class Conexao {
 			connection = DriverManager.getConnection(DATABASE_URL, USUARIO, SENHA);
 		}
 		catch (ClassNotFoundException | SQLException e) {
-			Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
+			Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, null, e);
 		}
 		return connection;
 	}

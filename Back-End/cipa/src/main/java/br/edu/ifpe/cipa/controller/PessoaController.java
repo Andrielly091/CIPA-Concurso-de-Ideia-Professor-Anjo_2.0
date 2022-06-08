@@ -1,12 +1,9 @@
 package br.edu.ifpe.cipa.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import javax.mail.MessagingException;
 import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,20 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.edu.ifpe.cipa.model.Emaill;
-//import br.edu.ifpe.cipa.dao.PessoaDao;
 import br.edu.ifpe.cipa.model.Pessoa;
 import br.edu.ifpe.cipa.service.PessoaService;
-import br.edu.ifpe.cipa.service.SendEmailService;
 
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaController {
 
-	@Autowired
-	private SendEmailService email;
 
 	PessoaService pessoaservice = new PessoaService();
 
@@ -53,7 +45,6 @@ public class PessoaController {
 			System.out.println("===== Lista Pessoas por Id ====");
 			List<Pessoa> allUser = pessoaservice.listar();
 			if (allUser.size() >= (id - 1)) {
-				System.out.println("entrou");
 				return new ResponseEntity<Pessoa>(allUser.get((id - 1)), HttpStatus.OK);
 			}
 			return (ResponseEntity.notFound().build());
@@ -63,17 +54,27 @@ public class PessoaController {
 	}
 
 	@PostMapping("/")
-	public void add(@Valid @RequestBody Pessoa pessoa) {
+	public void add(@Valid @RequestBody Pessoa pessoa, @PathVariable Integer id) {
 		System.out.println("===== inserir Pessoas ====");
+		System.out.println(id);
 		pessoa.setSenha(encoder.encode(pessoa.getSenha()));
-		Emaill email1 = new Emaill();
-		email1.setEmailTo("jadeilsom.m@gmail.com");
-		email1.setEmailFrom("jadeilsonm17@gmail.com");
-		email1.setSubject("teste");
-		email1.setText("Teste de envio de email java");
-		email1.setAwnerRef("Cipa");
-		email.sendEmail(email1);
 		pessoaservice.inserir(pessoa);
+	}
+	
+	@GetMapping("/findEmail/{email}")
+	public Pessoa findByEmail(@PathVariable String email) {
+		System.out.println("Find email");
+		System.out.println(email);
+		List<Pessoa> allPessoas = pessoaservice.listar();
+		Pessoa value = null;
+		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext(); ) { 
+			Pessoa p = iterator.next(); 
+			System.out.println(p.getEmail());
+			if (p.getEmail().equals(email)) {
+				value = p;
+			}
+		}
+		return value;
 	}
 
 	@DeleteMapping("/r/{id}")
