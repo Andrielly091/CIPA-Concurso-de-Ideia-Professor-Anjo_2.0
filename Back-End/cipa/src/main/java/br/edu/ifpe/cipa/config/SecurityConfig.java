@@ -1,4 +1,4 @@
-package br.edu.ifpe.cipa;
+package br.edu.ifpe.cipa.config;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,13 +15,15 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	@Override 
-    protected void configure(HttpSecurity http) throws Exception { 
-        http.cors().configurationSource(corsConfigurationSource()); 
-        http.csrf().disable() .authorizeRequests() .anyRequest().permitAll();
+
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().configurationSource(corsConfigurationSource());
+        http.csrf().disable().authorizeRequests().anyRequest().permitAll();
     }
-	@Bean
+
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
@@ -30,6 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-	}
+    }
 
 }

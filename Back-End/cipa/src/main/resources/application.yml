@@ -1,0 +1,34 @@
+spring:
+    
+  mail:
+    host: email-smtp.us-east-1.amazonaws.com
+    port: 587
+    username: AKIA6MOMH5C7JFSN3OMW
+    password: BOIoMkChKOjtfRLsCjcEMv6tc04C7zDhsNog1tgkDZZh
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+          
+  datasource:
+    url: jdbc:mysql://localhost:3306/cipa
+    username: root
+    password: null
+    dbcp2:
+      driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false

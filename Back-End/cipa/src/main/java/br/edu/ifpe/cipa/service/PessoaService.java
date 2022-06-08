@@ -1,13 +1,19 @@
 package br.edu.ifpe.cipa.service;
 
+import java.util.Iterator;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import br.edu.ifpe.cipa.dao.PessoaDao;
 import br.edu.ifpe.cipa.model.Pessoa;
 
+@Service
 public class PessoaService {
 	
+	
 	PessoaDao pessoadao = new PessoaDao();
+	
 	public List<Pessoa> listar() {
 		return pessoadao.listar();
 	}
@@ -16,24 +22,26 @@ public class PessoaService {
 		pessoadao.alterar(pessoa);
 	}
 	
-	public void inserir(Pessoa pessoa) {
-		pessoadao.inserir(pessoa);
+	public boolean inserir(Pessoa pessoa) {
+		List<Pessoa> allPessoas = pessoadao.listar();
+		var value = false;
+		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext(); ) { 
+			Pessoa p = iterator.next(); 
+			int id = pessoa.getId();
+			if (p.getEmail().equals(id)) {
+				value = true;
+			}
+		}
+		if(value == true) {
+			pessoadao.inserir(pessoa);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void remover(int id) {
 		pessoadao.remover(id);
 	}
 	
-//	public Object listAllPessoa(){
-//		
-//		PessoaDao pessoadao = new PessoaDao();
-//		
-//		return pessoadao.listar();
-//		
-//	}
-
-//	public void savePessoa(Pessoa pessoa) {
-//		lista.add(pessoa);
-//	}
-
 }

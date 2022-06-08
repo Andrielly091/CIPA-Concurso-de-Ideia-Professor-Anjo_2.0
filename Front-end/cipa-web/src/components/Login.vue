@@ -47,6 +47,7 @@
 
 <script>
 import { add } from '../Helpers/login';
+import { getLocalStorage, setLocalStorge } from '../Helpers/localStore'
 export default {
   name: 'login',
   data() {
@@ -59,10 +60,19 @@ export default {
     async logar () { 
       const obj = { email: this.email, senha: this.senha}
       const data = await add(obj)
-      console.log(obj);
-      if (data) {
+      console.log(data);
+      if (data.auth == true) {
+        const { auth, id, nome, email } = data;
+        console.log('entrei');
+        setLocalStorge('auth', auth) 
+        setLocalStorge('id', id) 
+        setLocalStorge('nome', nome) 
+        setLocalStorge('email', email) 
+        const value = getLocalStorage('auth');
+        console.log(value);
         this.$router.push('/')
-      } else {        
+      } else {   
+        setLocalStorge('auth', false) 
         alert('Usuario ou senha errada!')
       }
     },
@@ -75,6 +85,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
         @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&family=Rubik+Mono+One&display=swap');;
 
             * {
