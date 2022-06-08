@@ -26,6 +26,4 @@ public class Email {
 		this.idMail = idMail;
 	}
 	
-	
-
 }
