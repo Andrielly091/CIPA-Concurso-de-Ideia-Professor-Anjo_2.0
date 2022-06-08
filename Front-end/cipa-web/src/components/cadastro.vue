@@ -112,7 +112,6 @@
 
 <script>
 import { add } from "../Helpers/pessoas";
-import { addLogin } from "../Helpers/login";
 export default {
   name: "cadastro",
   data() {
@@ -125,26 +124,19 @@ export default {
   },
   methods: {
     async cadastrar() {
-      const obj = { email: this.email, senha: this.senha };
-      console.log(obj);
-      await addLogin(obj);
       const objPessoa = {
         nome: this.nomeCompleto,
+        senha: this.senha,
         email: this.email,
-        tipo: "aluno",
+        tipo: this.tipo,
       };
-      await add(objPessoa);
-      const data = await fetch("http://192.168.18.170:8080/login").then(
-        (result) => result.json()
-      );
-      console.log("data", data);
-    },
-    instituicao() {
-      var instituicao = document.getElementById("senha").value;
-      if (instituicao == instituicao) {
-        document.getElementById("senha").value = "";
+      const isCadatro = await add(objPessoa);
+      console.log('isCadastrado', isCadatro);
+      if (isCadatro) {
+        setTimeout(() => this.$router.push('/login'), 700)
       }
     },
+    
 
     entre() {
       this.$router.push("/login");

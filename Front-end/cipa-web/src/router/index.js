@@ -4,7 +4,7 @@ import cadastro from '../components/cadastro.vue'
 import login from '../components/Login.vue'
 import inscricaoProjeto from '../components/inscricaoProjeto.vue'
 import recuperarSenha from '../components/recuperarSenha'
-import { getLocalStorage } from '../Helpers/localStore'
+// impor t { getLocalStorage } from '../Helpers/localStore'
 
 const routes = [
   {
@@ -43,9 +43,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if(to.matched.some(route => route.meta.riqueresAuth)) {
-    const auth = getLocalStorage('auth');
-    console.log(auth);
-    if (!auth) {
+    if (localStorage.getItem('auth') == 'false' || localStorage.getItem('auth') == null) {
       next('/login');
     } else {
       next();

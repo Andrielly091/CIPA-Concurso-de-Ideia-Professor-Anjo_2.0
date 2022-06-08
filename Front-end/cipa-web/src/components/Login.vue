@@ -61,13 +61,15 @@ export default {
       const obj = { email: this.email, senha: this.senha}
       const data = await add(obj)
       console.log(data);
-      if (data.auth == true) {
-        const { auth, id, nome, email } = data;
+      const { auth } = data;
+      console.log("data",auth);
+      if (auth) {
+        // const { auth, id, nome, email } = data;
         console.log('entrei');
         setLocalStorge('auth', auth) 
-        setLocalStorge('id', id) 
-        setLocalStorge('nome', nome) 
-        setLocalStorge('email', email) 
+        // setLocalStorge('id', id) 
+        // setLocalStorge('nome', nome) 
+        // setLocalStorge('email', email) 
         const value = getLocalStorage('auth');
         console.log(value);
         this.$router.push('/')
