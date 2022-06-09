@@ -27,7 +27,6 @@ public class PessoaService {
 		var value = false;
 		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext(); ) { 
 			Pessoa p = iterator.next(); 
-			int id = pessoa.getId();
 			if (p.getEmail().equals(pessoa.getEmail())) {
 				value = true;
 			}
