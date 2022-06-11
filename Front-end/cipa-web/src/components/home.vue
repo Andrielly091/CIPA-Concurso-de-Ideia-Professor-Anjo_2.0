@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import { setLocalStorge } from '../Helpers/localStore';
+
 export default {
   name: 'home',
   props: {
@@ -78,6 +80,7 @@ export default {
   },
   methods: {
     sair() {
+      setLocalStorge('auth', false)
       this.$router.push('/login');
     },
     irParaInscricao() {

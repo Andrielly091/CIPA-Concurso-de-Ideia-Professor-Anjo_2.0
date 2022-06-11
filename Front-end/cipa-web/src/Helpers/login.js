@@ -10,7 +10,11 @@ export const addLogin = async (description) => await api('POST', 'login/', descr
   .then(({ data }) => data);
 
 export const add = async (description) => await api('POST', 'login', description)
-  .then(({ data }) => data);
+  .then(({data}) => data)
+  .catch(error => {
+    console.log(error);
+    return false
+  });
 
 export const rm = async (id) => api('DELETE', `login/${id}`)
   .then(getForOne);

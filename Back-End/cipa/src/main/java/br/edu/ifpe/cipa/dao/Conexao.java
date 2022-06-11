@@ -11,7 +11,7 @@ public class Conexao {
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DATABASE_URL = "jdbc:mysql://localhost/cipa";
 	private static final String USUARIO = "root";
-    private static final String SENHA = "";
+    private static final String SENHA = "password";
     
 	public static Connection getConexaoMySQL() {
 		
@@ -20,7 +20,7 @@ public class Conexao {
 			connection = DriverManager.getConnection(DATABASE_URL, USUARIO, SENHA);
 		}
 		catch (ClassNotFoundException | SQLException e) {
-			Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
+			Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, null, e);
 		}
 		return connection;
 	}

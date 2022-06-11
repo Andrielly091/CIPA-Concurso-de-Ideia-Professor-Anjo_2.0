@@ -2,48 +2,38 @@ package br.edu.ifpe.cipa.service;
 
 import java.sql.SQLException;
 import java.util.Iterator;
-import java.util.List; 
+import java.util.List;
+import org.springframework.stereotype.Service;
+import br.edu.ifpe.cipa.dao.PessoaDao;
+import br.edu.ifpe.cipa.model.Pessoa;
 
-import br.edu.ifpe.cipa.dao.LoginDao;
-import br.edu.ifpe.cipa.model.Login;
-
+@Service
 public class LoginService {
-	
-	LoginDao logindao = new LoginDao();
-	
-	public List<Login> listar() throws ClassNotFoundException, SQLException {
-		return logindao.listar();
-	}
-	
-	public Login alterar(Login loginBd) throws ClassNotFoundException, SQLException {
-		logindao.alterar(loginBd);
-		return loginBd;
 		
-	}
 	
-	public void inserir(Login login) throws ClassNotFoundException, SQLException {
-		logindao.inserir(login);
-	}
-	
-	public void remover(int loginId) throws ClassNotFoundException, SQLException {
-		logindao.remover(loginId);
-	}
+	PessoaDao pessoas = new PessoaDao();
 
-	public void alterar(int loginId, String senha) {
-		// TODO Auto-generated method stub
+	
+	public Pessoa auth(String email, String senha) throws SQLException {
 		
-	}
-	public boolean auth(String email, String senha) throws ClassNotFoundException, SQLException {
-		List<Login> listLogins = logindao.listar();
-		System.out.println("Params");
-		boolean value = false;
-		for (Iterator<Login> iterator = listLogins.iterator(); iterator.hasNext(); ) { 
-			Login l = (Login) iterator.next(); 
-			if (l.getEmail().equals(email) && l.getSenha().equals(senha)) {
-				value = true;
+		List<Pessoa> allPessoas = pessoas.listar();
+				
+		Pessoa value = null;
+		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext(); ) { 
+			Pessoa p = iterator.next(); 
+			if (p.getEmail().equals(email)) {
+				value = p;
 			}
 		}
-		return 	value;
+		System.out.println(value);
+		return value;
+		
+		
+	}
+
+	public void alterar(Integer loginId, String senha) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
