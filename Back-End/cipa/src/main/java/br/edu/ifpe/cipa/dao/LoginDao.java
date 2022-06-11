@@ -13,12 +13,9 @@ import br.edu.ifpe.cipa.model.Login;
 
 
 public class LoginDao {
-
 	Connection connection = Conexao.getConexaoMySQL();
 
 	public List<Login> listar() throws ClassNotFoundException, SQLException {
-
-	
 
 		String sql = "SELECT * FROM login";
 		List<Login> resposta = new ArrayList<>();

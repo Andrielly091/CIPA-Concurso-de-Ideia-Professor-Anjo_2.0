@@ -1,4 +1,11 @@
 <template>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" >
+
+/*margin:0;
+  padding:0;*/
+<body>
+
   <div class="content-index">
     <div class="division-1">
       <img src="https://i.imgur.com/HcLNjzn.png" class="logo" />
@@ -108,6 +115,7 @@
       </p>
     </div>
   </div>
+</body>
 </template>
 
 <script>
@@ -160,6 +168,7 @@ export default {
   margin: 0;
   padding: 0;
 }
+
 #tipo {
   margin-left: 21.5%;
   margin-top: 2%;
@@ -310,59 +319,6 @@ input {
   height: 30px !important;
   margin-top: 2% !important;
   border-radius: 5px !important;
-}
-@media (max-width: 580px) {
-  .division-2 {
-    background-color: #fff;
-  }
-  .content-index {
-    border: 2px solid black;
-    height: 105vh;
-    width: 520px;
-    margin-left: 4% !important;
-  }
-  .logo {
-    margin-bottom: 6%;
-  }
-  .division-1 img {
-    width: 240px;
-    margin-left: 25%;
-  }
-  .media-icons {
-    margin-left: 10%;
-    margin-top: 6%;
-  }
-  .media-icons i {
-    font-size: 2.8rem;
-    margin-left: 14%;
-  }
-  .texts {
-    margin-left: 16%;
-    margin-top: -6%;
-  }
-  .agroup {
-    margin-top: 5% !important;
-  }
 
-  .row {
-    margin-left: 11% !important;
-    width: 100vh;
-  }
-  .row2 {
-    margin-left: 31% !important;
-  }
-  .row2 button {
-    background-color: #1b2f49 !important;
-    padding-left: 35px;
-    padding-right: 35px;
-  }
-  .division-2 img {
-    width: 0px;
-    margin-top: 17%;
-    margin-left: 18%;
-  }
-  .content-index {
-    margin-left: 13%;
-  }
 }
 </style>
