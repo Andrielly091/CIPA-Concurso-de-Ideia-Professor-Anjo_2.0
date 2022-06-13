@@ -4,7 +4,7 @@ import cadastro from '../components/cadastro.vue'
 import login from '../components/Login.vue'
 import inscricaoProjeto from '../components/inscricaoProjeto.vue'
 import recuperarSenha from '../components/recuperarSenha'
-import { getLocalStorage } from '../Helpers/localStore'
+// import { getLocalStorage } from '../Helpers/localStore'
 
 const routes = [
   {
@@ -41,18 +41,18 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if(to.matched.some(route => route.meta.riqueresAuth)) {
-    const auth = getLocalStorage('auth');
-    console.log(auth);
-    if (!auth) {
-      next('/login');
-    } else {
-      next();
-    }
-  } else {
-    next();
-  }
-})
+// // router.beforeEach((to, from, next) => {
+//   if(to.matched.some(route => route.meta.riqueresAuth)) {
+//     const auth = getLocalStorage('auth');
+//     console.log(auth);
+//     if (!auth) {
+//       next('/login');
+//     } else {
+//       next();
+//     }
+//   } else {
+//     next();
+//   }
+// // })
 
 export default router

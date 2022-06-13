@@ -59,8 +59,12 @@ export default {
   methods: {
     async logar () { 
       const obj = { email: this.email, senha: this.senha}
+      console.log('teste 1');
       const data = await add(obj)
-      console.log(data);
+      console.log('data impromisse',data);
+      
+      console.log("teste 2");
+      
       if (data.auth == true) {
         const { auth, id, nome, email } = data;
         console.log('entrei');
@@ -70,11 +74,13 @@ export default {
         setLocalStorge('email', email) 
         const value = getLocalStorage('auth');
         console.log(value);
-        this.$router.push('/')
-      } else {   
-        setLocalStorge('auth', false) 
-        alert('Usuario ou senha errada!')
-      }
+        return this.$router.push('/')
+      } 
+
+      setLocalStorge('auth', false) 
+      alert('Usuario ou senha errada!')
+      
+
     },
     cadastre(){
       this.$router.push('cadastro')

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpe.cipa.model.Ideias;
+import br.edu.ifpe.cipa.model.Pessoa;
 import br.edu.ifpe.cipa.service.IdeiasService;
 
 @RestController
@@ -23,6 +24,7 @@ public class IdeiasController {
 		IdeiasService ideiasservice =  new IdeiasService();
 		
 		@GetMapping("")
+		
 		public List<Ideias> list(){
 			return ideiasservice.listar();
 		}
@@ -41,10 +43,19 @@ public class IdeiasController {
 			return ideiasservice.inserir(ideias);
 		}
 		
-//	    @PostMapping("/")
-//		public void add1(@RequestBody Ideias ideias) throws ClassNotFoundException, SQLException {
-//			ideiasservice.consultar(ideias);
-//	}
+		@GetMapping("/{id}")
+		public ResponseEntity<Ideias> consultarIdeiaPorId(@PathVariable Integer id) {
+			try {
+				System.out.println("===== Lista Ideias por Id ====");
+				List<Ideias> allUser = ideiasservice.listar();
+				if (allUser.size() >= (id - 1)) {
+					return new ResponseEntity<Ideias>(allUser.get((id - 1)), HttpStatus.OK);
+				}
+				return (ResponseEntity.notFound().build());
+			} catch (NoSuchElementException e) {
+				return new ResponseEntity<Ideias>(HttpStatus.NOT_FOUND);
+			}
+		}
 }
 
 
