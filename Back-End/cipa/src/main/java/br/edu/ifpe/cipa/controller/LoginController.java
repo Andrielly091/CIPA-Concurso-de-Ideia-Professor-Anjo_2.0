@@ -33,11 +33,18 @@ public class LoginController<senha> {
 
 
 	@PostMapping("")
-	public ResponseEntity<Object> auth (@RequestBody Pessoa login) throws SQLException {
+	public ResponseEntity<Pessoa> auth (@RequestBody Pessoa login) throws SQLException {
 		System.out.println("===== Autenticação ====");
-		Pessoa value = loginservice.auth(login.getEmail(), login.getSenha());
+		var value = loginservice.auth(login.getEmail(), login.getSenha());
+		System.out.println("value"+value);
 		if((value == null)) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(value);
+			System.out.println("teste");
+			login.setId(0);
+			login.setNome(null);
+			login.setEmail(null);
+			login.setAuth(false);
+			login.setTipo(null);
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(login);
 		}
 
 	
@@ -54,10 +61,7 @@ public class LoginController<senha> {
 			value.setAuth(false);
 			value.setTipo(null);
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(value);
-
 		}
-
-
 	}
 
 

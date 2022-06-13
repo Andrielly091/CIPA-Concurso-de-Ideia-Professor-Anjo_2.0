@@ -7,7 +7,7 @@ export const getForOne = async (id) => api('GET', `pessoas/${id}`)
   .then(({ data }) => data);
 
 export const add = async (description) => await api('POST', 'pessoas/', description)
-  .then(getAll);
+  .then(({data}) => data);
 
 export const rm = async (id) => api('DELETE', `pessoas/${id}`)
   .then(getForOne);

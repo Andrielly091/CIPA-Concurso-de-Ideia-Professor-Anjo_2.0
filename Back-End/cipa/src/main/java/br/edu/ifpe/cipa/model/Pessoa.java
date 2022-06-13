@@ -22,7 +22,7 @@ public class Pessoa {
 	@JsonInclude(Include.NON_NULL)
 	@NotNull(message = "tipo")
 	private String tipo;
-	@JsonInclude(Include.NON_DEFAULT)
+//	@JsonInclude(Include.NON_DEFAULT)
 	private boolean auth;
 
 	public boolean isAuth() {
