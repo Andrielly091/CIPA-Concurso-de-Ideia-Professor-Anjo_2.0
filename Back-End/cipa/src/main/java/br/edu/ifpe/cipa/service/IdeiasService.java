@@ -22,4 +22,11 @@ import br.edu.ifpe.cipa.model.Ideias;
 		public void consultar(Ideias ideias) throws ClassNotFoundException, SQLException {
 			ideiasdao.consultar(ideias);
 		}
+		
+
+		public List<Ideias> listarApenas1(Integer id) {
+			return ideiasdao.listarApenas1(id);
+		}
+		
+		
 }

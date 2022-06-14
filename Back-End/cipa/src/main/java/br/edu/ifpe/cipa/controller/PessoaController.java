@@ -45,7 +45,7 @@ public class PessoaController {
 		response.setMensage("FindAll");
 		response.setPessoas(allPessoas);
 		response.setStatusCode(HttpStatus.OK);
-		response.setCreated(false);
+		response.setCreated("false");
 		return ResponseEntity.ok().body(response);
 	}
 
@@ -80,12 +80,12 @@ public class PessoaController {
 		if (isCreated) {
 			response.setMensage("create person: "+ pessoa.getNome());
 			response.setStatusCode(HttpStatus.CREATED);
-			response.setCreated(true);
+			response.setCreated("true");
 			return new ResponseEntity<Response>(response, HttpStatus.CREATED);
 		}
 		response.setMensage("Not created");
 		response.setStatusCode(HttpStatus.NOT_FOUND);
-		response.setCreated(false);
+		response.setCreated("false");
 		return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
 	}
 	

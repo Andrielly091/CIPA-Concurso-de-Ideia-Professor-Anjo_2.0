@@ -1,6 +1,7 @@
 package br.edu.ifpe.cipa.controller;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpe.cipa.model.Ideias;
-import br.edu.ifpe.cipa.model.Pessoa;
+import br.edu.ifpe.cipa.model.Response;
 import br.edu.ifpe.cipa.service.IdeiasService;
 
 @RestController
@@ -30,11 +31,33 @@ public class IdeiasController {
 		}
 		
 		@GetMapping("/{id}")
-		public ResponseEntity<Ideias> consultarIdeiasPorId(@PathVariable Integer id){
+		public ResponseEntity<Response> consultarIdeiasPorId(@PathVariable String id){
+			
 			try {
-				return new ResponseEntity<Ideias>(ideiasservice.listar().get(id), HttpStatus.OK);
+				Response response = new Response();
+				boolean value = false;
+				int number = Integer.parseInt(id);
+
+			List<Ideias> ideias = ideiasservice.listar();	
+			    for (Iterator<Ideias> iterator = ideias.iterator(); iterator.hasNext(); ) { 
+				Ideias i = iterator.next(); 
+				if (i.getId_ideias() == (number)) {
+					value = true;
+				}
+				
+			}
+			    if (value == true){
+			    	List<Ideias> ideiaRetorno = ideiasservice.listarApenas1(number);
+			    	response.setIdeias(ideiaRetorno);
+					response.setStatusCode(HttpStatus.OK);
+			    	return new ResponseEntity<Response>(response,HttpStatus.OK);
+			    }
+			    response.setMensage("Not Found");
+				response.setStatusCode(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
 			}catch(NoSuchElementException e) {
-				return new ResponseEntity<Ideias>(HttpStatus.NOT_FOUND);
+			 return new ResponseEntity<Response>(HttpStatus.NOT_FOUND);
+
 			}
 		}
 		
@@ -43,19 +66,8 @@ public class IdeiasController {
 			return ideiasservice.inserir(ideias);
 		}
 		
-		@GetMapping("/{id}")
-		public ResponseEntity<Ideias> consultarIdeiaPorId(@PathVariable Integer id) {
-			try {
-				System.out.println("===== Lista Ideias por Id ====");
-				List<Ideias> allUser = ideiasservice.listar();
-				if (allUser.size() >= (id - 1)) {
-					return new ResponseEntity<Ideias>(allUser.get((id - 1)), HttpStatus.OK);
-				}
-				return (ResponseEntity.notFound().build());
-			} catch (NoSuchElementException e) {
-				return new ResponseEntity<Ideias>(HttpStatus.NOT_FOUND);
-			}
-		}
+		
+		
 }
 
 

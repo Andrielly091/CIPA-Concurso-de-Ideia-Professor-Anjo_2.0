@@ -36,11 +36,11 @@ public class Response {
     this.pessoas = pessoas;
   }
   @JsonInclude(Include.NON_NULL)
-  private Ideias ideias;
-  public Ideias getIdeias() {
+  private List<Ideias> ideias;
+  public List<Ideias> getIdeias() {
     return ideias;
   }
-  public void setIdeias(Ideias ideias) {
+  public void setIdeias(List<Ideias> ideias) {
     this.ideias = ideias;
   }
   @JsonInclude(Include.NON_DEFAULT)

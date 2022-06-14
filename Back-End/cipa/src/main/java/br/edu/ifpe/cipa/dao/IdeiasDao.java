@@ -40,7 +40,6 @@ public class IdeiasDao {
 		    }
 		 
 		 public void consultar(Ideias ideias) throws ClassNotFoundException, SQLException{
-			 
 				String sql = "INSERT INTO 'ideias'"
 						+ "('id_concurso','id_ideias','id_lider','nota','resumo_do_projeto','temas_impactados','video_demostrativo')"
 						+ "VALUES (? , ?, ?, ?, ?, ?, ?)";
@@ -58,6 +57,34 @@ public class IdeiasDao {
 				stmt.close();
 				connection.close();
 		}
+		 
+		 public List<Ideias> listarApenas1(Integer id) {
+				String sql = "SELECT * FROM ideias where id_ideias = ?";
+		        List<Ideias> retorno = new ArrayList<>();
+		        try {
+		            PreparedStatement stmt = connection.prepareStatement(sql);
+		            stmt.setInt(1, id);
+		            ResultSet resultado = stmt.executeQuery();
+		            while (resultado.next()) {
+		                Ideias cliente = new Ideias();
+		                System.out.println(cliente);
+		                cliente.setId_ideias(resultado.getInt("Id_Ideias"));
+		                cliente.setId_lider(resultado.getString("Id_Lider"));
+		                cliente.setId_concurso(resultado.getInt("Id_Concurso"));
+		                cliente.setTemas_Impactados(resultado.getString("Temas_Impactados"));
+		                cliente.setResumo_do_projeto(resultado.getString("Resumo_Do_Projeto"));
+		                cliente.setVideo_demostrativo(resultado.getString("Video_Demostrativo"));
+		                cliente.setNota(resultado.getFloat("Nota"));
+		            
+		                retorno.add(cliente);
+		            }
+		        } catch (SQLException ex) {
+		            Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
+		        }
+		        return retorno;
+			}
+			
+		 
 
 		public List<Ideias> listar() {
 			String sql = "SELECT * FROM ideias";
