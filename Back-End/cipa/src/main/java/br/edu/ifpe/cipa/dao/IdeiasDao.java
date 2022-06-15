@@ -84,8 +84,7 @@ public class IdeiasDao {
 		        return retorno;
 			}
 			
-		 
-
+		
 		public List<Ideias> listar() {
 			String sql = "SELECT * FROM ideias";
 	        List<Ideias> retorno = new ArrayList<>();
@@ -111,4 +110,16 @@ public class IdeiasDao {
 	        return retorno;
 		}
 		
+		 public boolean Deletar(Integer id) {
+		        String sql = "DELETE FROM ideias WHERE id_ideias=?";
+		        try {
+		            PreparedStatement stmt = connection.prepareStatement(sql);
+		            stmt.setInt(1, id);
+		            stmt.execute();
+		            return true;
+		        } catch (SQLException ex) {
+		            Logger.getLogger(IdeiasDao.class.getName()).log(Level.SEVERE, null, ex);
+		            return false;
+		        }
+		    }
 }

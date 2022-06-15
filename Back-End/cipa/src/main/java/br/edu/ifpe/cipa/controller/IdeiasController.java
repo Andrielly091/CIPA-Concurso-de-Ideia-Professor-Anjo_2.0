@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,6 @@ public class IdeiasController {
 		
 		@GetMapping("/{id}")
 		public ResponseEntity<Response> consultarIdeiasPorId(@PathVariable String id){
-			
 			try {
 				Response response = new Response();
 				boolean value = false;
@@ -44,7 +44,6 @@ public class IdeiasController {
 				if (i.getId_ideias() == (number)) {
 					value = true;
 				}
-				
 			}
 			    if (value == true){
 			    	List<Ideias> ideiaRetorno = ideiasservice.listarApenas1(number);
@@ -52,12 +51,13 @@ public class IdeiasController {
 					response.setStatusCode(HttpStatus.OK);
 			    	return new ResponseEntity<Response>(response,HttpStatus.OK);
 			    }
+			    
 			    response.setMensage("Not Found");
 				response.setStatusCode(HttpStatus.NOT_FOUND);
 				return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
+				
 			}catch(NoSuchElementException e) {
 			 return new ResponseEntity<Response>(HttpStatus.NOT_FOUND);
-
 			}
 		}
 		
@@ -66,8 +66,11 @@ public class IdeiasController {
 			return ideiasservice.inserir(ideias);
 		}
 		
-		
-		
+		@DeleteMapping("/r/{id}")
+		public void deletar(@PathVariable Integer id) {
+			System.out.println("===== REMOVENDO IDEIA ====");
+			ideiasservice.Deletar(id);
+		}
 }
 
 

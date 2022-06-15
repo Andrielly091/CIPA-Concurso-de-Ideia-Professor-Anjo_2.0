@@ -72,7 +72,7 @@ public class PessoaDao {
     }
 
     public boolean remover(Integer id) {
-        String sql = "DELETE FROM cliente WHERE id=?";
+        String sql = "DELETE FROM pessoas WHERE id=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, id);

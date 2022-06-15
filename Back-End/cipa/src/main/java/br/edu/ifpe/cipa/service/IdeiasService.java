@@ -23,10 +23,11 @@ import br.edu.ifpe.cipa.model.Ideias;
 			ideiasdao.consultar(ideias);
 		}
 		
-
 		public List<Ideias> listarApenas1(Integer id) {
 			return ideiasdao.listarApenas1(id);
 		}
 		
-		
+		public void Deletar(int id) {
+			ideiasdao.Deletar(id);
+		}
 }
