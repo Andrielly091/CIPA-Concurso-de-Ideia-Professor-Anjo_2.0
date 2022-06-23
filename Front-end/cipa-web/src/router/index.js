@@ -4,11 +4,7 @@ import cadastro from '../components/cadastro.vue'
 import login from '../components/Login.vue'
 import inscricaoProjeto from '../components/inscricaoProjeto.vue'
 import recuperarSenha from '../components/recuperarSenha'
-<<<<<<< HEAD
-// import { getLocalStorage } from '../Helpers/localStore'
-=======
-// impor t { getLocalStorage } from '../Helpers/localStore'
->>>>>>> 32189e2765cd71d9367454bb49cf99d6976658ce
+import votacao from '../components/votacao'
 
 const routes = [
   {
@@ -38,6 +34,12 @@ const routes = [
     component: inscricaoProjeto,
     meta: { riqueresAuth: true }
   },
+  {
+    path: '/votacao',
+    name: 'votacao',
+    component: votacao,
+    
+  },
 ]
 
 const router = createRouter({
@@ -45,21 +47,7 @@ const router = createRouter({
   routes
 })
 
-<<<<<<< HEAD
-// // router.beforeEach((to, from, next) => {
-//   if(to.matched.some(route => route.meta.riqueresAuth)) {
-//     const auth = getLocalStorage('auth');
-//     console.log(auth);
-//     if (!auth) {
-//       next('/login');
-//     } else {
-//       next();
-//     }
-//   } else {
-//     next();
-//   }
-// // })
-=======
+
 router.beforeEach((to, from, next) => {
   if(to.matched.some(route => route.meta.riqueresAuth)) {
     if (localStorage.getItem('auth') == 'false' || localStorage.getItem('auth') == null) {
@@ -71,6 +59,6 @@ router.beforeEach((to, from, next) => {
     next();
   }
 })
->>>>>>> 32189e2765cd71d9367454bb49cf99d6976658ce
+
 
 export default router
