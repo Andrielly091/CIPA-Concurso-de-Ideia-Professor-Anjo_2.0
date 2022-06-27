@@ -121,7 +121,7 @@
 <script>
 import { add } from "../Helpers/pessoas";
 export default {
-  name: "cadastro",
+                                            
   data() {
     return {
       email: "",

@@ -61,20 +61,12 @@ export default {
       const obj = { email: this.email, senha: this.senha}
       console.log('teste 1');
       const data = await add(obj)
-<<<<<<< HEAD
       console.log('data impromisse',data);
       
       console.log("teste 2");
       
       if (data.auth == true) {
         const { auth, id, nome, email } = data;
-=======
-      console.log(data);
-      const { auth } = data;
-      console.log("data",auth);
-      if (auth) {
-        // const { auth, id, nome, email } = data;
->>>>>>> 32189e2765cd71d9367454bb49cf99d6976658ce
         console.log('entrei');
         setLocalStorge('auth', auth) 
         // setLocalStorge('id', id) 
