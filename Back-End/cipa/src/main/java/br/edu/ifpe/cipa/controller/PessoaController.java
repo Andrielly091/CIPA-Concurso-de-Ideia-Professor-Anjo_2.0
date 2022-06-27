@@ -26,7 +26,6 @@ import br.edu.ifpe.cipa.service.PessoaService;
 @RequestMapping("/pessoas")
 public class PessoaController {
 
-
 	PessoaService pessoaservice = new PessoaService();
 
 	private final PasswordEncoder encoder;
@@ -78,7 +77,7 @@ public class PessoaController {
 		pessoa.setSenha(encoder.encode(pessoa.getSenha()));
 		boolean isCreated = pessoaservice.inserir(pessoa);
 		if (isCreated) {
-			response.setMensage("create person: "+ pessoa.getNome());
+			response.setMensage("create person: " + pessoa.getNome());
 			response.setStatusCode(HttpStatus.CREATED);
 			response.setCreated("true");
 			return new ResponseEntity<Response>(response, HttpStatus.CREATED);
@@ -88,14 +87,14 @@ public class PessoaController {
 		response.setCreated("false");
 		return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@GetMapping("/findEmail/{email}")
 	public Pessoa findByEmail(@PathVariable String email) {
 		System.out.println("==== FIND EMAIL ====");
 		List<Pessoa> allPessoas = pessoaservice.listar();
 		Pessoa value = null;
-		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext(); ) { 
-			Pessoa p = iterator.next(); 
+		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext();) {
+			Pessoa p = iterator.next();
 			System.out.println(p.getEmail());
 			if (p.getEmail().equals(email)) {
 				value = p;
@@ -117,5 +116,4 @@ public class PessoaController {
 		System.out.println(pessoa.getSenha());
 		pessoaservice.alterar(pessoa);
 	}
-
 }

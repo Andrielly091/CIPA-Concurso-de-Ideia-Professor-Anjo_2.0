@@ -10,7 +10,6 @@ public class Ideias {
 	private String video_demostrativo;
 	private float nota;
 	
-	
 	public int getId_ideias() {
 		return id_ideias;
 	}
