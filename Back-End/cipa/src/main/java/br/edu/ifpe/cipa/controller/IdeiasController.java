@@ -41,12 +41,12 @@ public class IdeiasController {
 			List<Ideias> ideias = ideiasservice.listar();
 			for (Iterator<Ideias> iterator = ideias.iterator(); iterator.hasNext();) {
 				Ideias i = iterator.next();
-				if (i.getId_ideias() == (number)) {
+				if (i.getId_ideia() == (number)) {
 					value = true;
 				}
 			}
 			if (value == true) {
-				List<Ideias> ideiaRetorno = ideiasservice.listarApenas1(number);
+				List<Ideias> ideiaRetorno = ideiasservice.listarApenasPessoa(number);
 				response.setIdeias(ideiaRetorno);
 				response.setStatusCode(HttpStatus.OK);
 				return new ResponseEntity<Response>(response, HttpStatus.OK);

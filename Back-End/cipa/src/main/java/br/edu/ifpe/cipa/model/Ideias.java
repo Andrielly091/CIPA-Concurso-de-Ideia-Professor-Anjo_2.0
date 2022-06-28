@@ -2,16 +2,26 @@ package br.edu.ifpe.cipa.model;
 
 public class Ideias {
 	
-	private int id_ideias;
+	private int id_ideia;
 	private String id_lider;
 	private int id_concurso;
+	private String imagem;
 	private String temas_Impactados;
 	private String resumo_do_projeto;
 	private String video_demostrativo;
 	private float nota;
+
 	
-	public int getId_ideias() {
-		return id_ideias;
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
+	public int getId_ideia() {
+		return id_ideia;
 	}
 	
 	public String getId_lider() {
@@ -50,8 +60,8 @@ public class Ideias {
 	public void setNota(float nota) {
 		this.nota = nota;
 	}
-	public void setId_ideias(int id_ideias) {
-		this.id_ideias = id_ideias;
+	public void setId_ideia(int id_ideia) {
+		this.id_ideia = id_ideia;
 	}
 	
 }

@@ -22,8 +22,8 @@ public class IdeiasService {
 		ideiasdao.consultar(ideias);
 	}
 
-	public List<Ideias> listarApenas1(Integer id) {
-		return ideiasdao.listarApenas1(id);
+	public List<Ideias> listarApenasPessoa(Integer id) {
+		return ideiasdao.listarApenasPessoa(id);
 	}
 
 	public void Deletar(int id) {
