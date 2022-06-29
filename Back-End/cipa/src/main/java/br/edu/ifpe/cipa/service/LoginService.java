@@ -23,9 +23,7 @@ public class LoginService {
 				value = true;
 			}
 		}
-		return value;
-		
-		
+		return value;		
 	}
 
 	public void alterar(Integer loginId, String senha) {

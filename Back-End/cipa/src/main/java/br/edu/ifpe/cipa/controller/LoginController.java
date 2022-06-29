@@ -72,6 +72,5 @@ public class LoginController<senha> {
 	@PutMapping("/esqueceuSenha/{loginId}")
 	public void alterar(@PathVariable Integer loginId, @PathVariable String senha) {
 		loginservice.alterar(loginId, senha);
-
 	}
 }

@@ -4,7 +4,7 @@ package br.edu.ifpe.cipa.controller;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.edu.ifpe.cipa.model.Pessoa;
 import br.edu.ifpe.cipa.model.Response;
 import br.edu.ifpe.cipa.service.PessoaService;
