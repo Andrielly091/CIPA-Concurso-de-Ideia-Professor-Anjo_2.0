@@ -38,7 +38,6 @@ public class PessoaController {
 
 	@GetMapping("")
 	public ResponseEntity<Response> list() {
-		System.out.println("===== Lista Pessoas ====");
 		Response response = new Response();
 		List<Pessoa> allPessoas = pessoaservice.listar();
 		response.setMensage("FindAll");
@@ -50,52 +49,51 @@ public class PessoaController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Response> consultarPessoaPorId(@PathVariable Integer id) {
+		Response response = new Response();
+
+		ResponseEntity<Response> re;
 		try {
-			System.out.println("===== Lista Pessoas por Id ====");
-			Response response = new Response();
-			List<Pessoa> allUser = pessoaservice.listar();
-			if (allUser.size() >= (id - 1)) {
-				response.setMensage("FindById");
-				ArrayList<Pessoa> list = new ArrayList();
-				add = list.add(allUser.get((id - 1)));
-				response.setPessoas(list);
-				response.setStatusCode(HttpStatus.OK);
-				return new ResponseEntity<Response>(response, HttpStatus.OK);
-			}
-			response.setMensage("Not Found");
+			response.setMensage("FindById");
+			ArrayList<Pessoa> list = new ArrayList();
+			list.add(pessoaservice.listarOne(id));
+			response.setPessoas(list);
+			response.setStatusCode(HttpStatus.OK);
+			re = new ResponseEntity<Response>(response, HttpStatus.OK);
+		} catch (Exception e) {
+			response.setMensage(e.getMessage());
 			response.setStatusCode(HttpStatus.NOT_FOUND);
-			return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<Response>(HttpStatus.NOT_FOUND);
+			re = new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
 		}
+		return re;
 	}
 
 	@PostMapping("/")
 	public ResponseEntity<Response> add(@Valid @RequestBody Pessoa pessoa) {
-		System.out.println("===== INSERIR PESSOAS ====");
 		Response response = new Response();
+
+		ResponseEntity<Response> re;
 		pessoa.setSenha(encoder.encode(pessoa.getSenha()));
-		boolean isCreated = pessoaservice.inserir(pessoa);
-		if (isCreated) {
+
+		try {
 			response.setMensage("create person: " + pessoa.getNome());
 			response.setStatusCode(HttpStatus.CREATED);
 			response.setCreated("true");
-			return new ResponseEntity<Response>(response, HttpStatus.CREATED);
+			re = new ResponseEntity<Response>(response, HttpStatus.CREATED);
+		} catch (Exception e) {
+			response.setMensage(e.getMessage());
+			response.setStatusCode(HttpStatus.NOT_FOUND);
+			response.setCreated("false");
+			re = new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
 		}
-		response.setMensage("Not created");
-		response.setStatusCode(HttpStatus.NOT_FOUND);
-		response.setCreated("false");
-		return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
+		return re;
 	}
 
 	@GetMapping("/findEmail/{email}")
 	public Pessoa findByEmail(@PathVariable String email) {
-		System.out.println("==== FIND EMAIL ====");
 		List<Pessoa> allPessoas = pessoaservice.listar();
 		Pessoa value = null;
 		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext();) {
 			Pessoa p = iterator.next();
-			System.out.println(p.getEmail());
 			if (p.getEmail().equals(email)) {
 				value = p;
 			}
@@ -103,17 +101,14 @@ public class PessoaController {
 		return value;
 	}
 
-	@DeleteMapping("/r/{id}")
+	@DeleteMapping("/{id}")
 	public void remove(@PathVariable Integer id) {
-		System.out.println("===== REMOVE PESSOA ====");
 		pessoaservice.remover(id);
 	}
 
-	@PutMapping("/u")
+	@PutMapping("/")
 	public void update(@RequestBody Pessoa pessoa) {
-		System.out.println("===== Atualiza Pessoas ====");
 		pessoa.setSenha(encoder.encode(pessoa.getSenha()));
-		System.out.println(pessoa.getSenha());
 		pessoaservice.alterar(pessoa);
 	}
 }

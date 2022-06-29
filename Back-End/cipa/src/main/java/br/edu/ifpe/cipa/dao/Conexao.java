@@ -11,7 +11,7 @@ public class Conexao {
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DATABASE_URL = "jdbc:mysql://localhost/cipa";
 	private static final String USUARIO = "root";
-    private static final String SENHA = "";
+  private static final String SENHA = "";
     
 	public static Connection getConexaoMySQL() {
 		

@@ -22,12 +22,12 @@ public class PessoaDao {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
-                Pessoa cliente = new Pessoa();
-                cliente.setId(resultado.getInt("id"));
-                cliente.setNome(resultado.getString("nome"));
-                cliente.setEmail(resultado.getString("email"));
-                cliente.setTipo(resultado.getString("tipo_usuario"));
-                retorno.add(cliente);
+                Pessoa newPessoa = new Pessoa();
+                newPessoa.setId(resultado.getInt("id"));
+                newPessoa.setNome(resultado.getString("nome"));
+                newPessoa.setEmail(resultado.getString("email"));
+                newPessoa.setTipo(resultado.getString("tipo_usuario"));
+                retorno.add(newPessoa);
             }
         } catch (SQLException ex) {
             Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,16 +57,15 @@ public class PessoaDao {
         return retorno;
     }
 
-    public boolean inserir(Pessoa cliente) {
-        System.out.println("====== Inserir ======");
+    public boolean inserir(Pessoa newPessoa) {
         String sql = "INSERT INTO pessoas(nome, email,senha, tipo_usuario) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, cliente.getNome().substring(0, 1).toUpperCase()
-                    + cliente.getNome().substring(1));
-            stmt.setString(2, cliente.getEmail());
-            stmt.setString(3, cliente.getSenha());
-            stmt.setString(4, cliente.getTipo());
+            stmt.setString(1, newPessoa.getNome().substring(0, 1).toUpperCase()
+                    + newPessoa.getNome().substring(1));
+            stmt.setString(2, newPessoa.getEmail());
+            stmt.setString(3, newPessoa.getSenha());
+            stmt.setString(4, newPessoa.getTipo());
             stmt.execute();
             return true;
         } catch (SQLException ex) {

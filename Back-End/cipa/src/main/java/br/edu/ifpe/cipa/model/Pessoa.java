@@ -22,16 +22,6 @@ public class Pessoa {
 	@JsonInclude(Include.NON_NULL)
 	@NotNull(message = "tipo")
 	private String tipo;
-//	@JsonInclude(Include.NON_DEFAULT)
-	private boolean auth;
-
-	public boolean isAuth() {
-		return auth;
-	}
-
-	public void setAuth(boolean auth) {
-		this.auth = auth;
-	}
 
 	public int getId() {
 		return id;
