@@ -138,14 +138,14 @@ export default {
         email: this.email,
         tipo: this.tipo,
       };
-      const isCadatro = await add(objPessoa);
-      console.log('isCadastrado', isCadatro);
-      if (isCadatro) {
+      const data = await add(objPessoa);
+      console.log('isCadastrado', data);
+      if (data.isCadatro == 'true') {
         setTimeout(() => this.$router.push('/login'), 700)
       }
+      return alert(data.mensagem)
     },
     
-
     entre() {
       this.$router.push("/login");
     },

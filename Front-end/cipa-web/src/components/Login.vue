@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import { add } from '../Helpers/login';
-import { getLocalStorage, setLocalStorge } from '../Helpers/localStore'
+import { auth } from '../Helpers/login';
+import { setLocalStorge } from '../Helpers/localStore'
 export default {
   name: 'login',
   data() {
@@ -59,28 +59,15 @@ export default {
   methods: {
     async logar () { 
       const obj = { email: this.email, senha: this.senha}
-      console.log('teste 1');
-      const data = await add(obj)
-      console.log('data impromisse',data);
-      
-      console.log("teste 2");
-      
-      if (data.auth == true) {
-        const { auth, id, nome, email } = data;
-        console.log('entrei');
+      const data = await auth(obj);      
+      if (data.auth == 'true') {
+        const { auth, id } = data;
         setLocalStorge('auth', auth) 
-        // setLocalStorge('id', id) 
-        // setLocalStorge('nome', nome) 
-        // setLocalStorge('email', email) 
-        const value = getLocalStorage('auth');
-        console.log(value);
+        setLocalStorge('id', id)  
         return this.$router.push('/')
       } 
-
       setLocalStorge('auth', false) 
       alert('Usuario ou senha errada!')
-      
-
     },
     cadastre(){
       this.$router.push('cadastro')

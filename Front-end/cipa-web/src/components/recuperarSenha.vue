@@ -13,7 +13,7 @@
             <input id="Confirmasenha" v-model="confSenha" type="password" min=8 placeholder="Confirmar senha:">
           </div>
         </div>
-        <button v-on:click="alterar()" :disabled="!confSenha || !senha || senha.length < 8" class="btn waves-effect waves-light" type="submit" name="action">Confirmar
+        <button v-on:click="alterar()" :disabled="!confSenha || !senha || senha.length < 8 || confSenha.length < 8" class="btn waves-effect waves-light" type="submit" name="action">Confirmar
           <i class="material-icons right">send</i>
         </button>
   </div>
@@ -32,7 +32,7 @@ export default {
     async alterar() { 
       console.log(this.idUser);
       if (this.confSenha !== this.senha) {
-        alert('Senhas diferentes!\nPrencha com senhas iguais')
+        alert('Senhas diferentes')
       }
     },
 }
