@@ -26,6 +26,7 @@ public class IdeiasDao {
 			stmt.setString(5, ideia.getTemas_Impactados());
 			stmt.setString(6, ideia.getVideo_demostrativo());
 			stmt.setFloat(7, ideia.getNota());
+			stmt.setString(8, ideia.getNome());
 
 			stmt.execute();
 			stmt.close();
@@ -40,18 +41,19 @@ public class IdeiasDao {
 
 	public void consultar(Ideias ideias) throws ClassNotFoundException, SQLException {
 		String sql = "INSERT INTO 'ideias'"
-				+ "('id_concurso','id_ideia','id_lider','imagem','nota','resumo_do_projeto','temas_impactados','video_demostrativo')"
-				+ "VALUES (? , ?, ?, ?, ?, ?, ?,?)";
+				+ "('id_concurso','id_ideia','id_lider','imagem','nota','resumo_do_projeto','temas_impactados','video_demostrativo', 'nome')"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = (PreparedStatement) ((java.sql.Connection) connection).prepareStatement(sql);
 
-		stmt.setInt(1, ideias.getId_ideia());
-		stmt.setString(2, ideias.getId_lider());
-		stmt.setString(3, ideias.getImagem());
-		stmt.setInt(4, ideias.getId_concurso());
-		stmt.setString(5, ideias.getTemas_Impactados());
+		stmt.setInt(1, ideias.getId_concurso());
+		stmt.setInt(2, ideias.getId_ideia());
+		stmt.setString(3, ideias.getId_lider());
+		stmt.setString(4, ideias.getImagem());
+		stmt.setFloat(5, ideias.getNota());
 		stmt.setString(6, ideias.getResumo_do_projeto());
-		stmt.setString(7, ideias.getVideo_demostrativo());
-		stmt.setFloat(8, ideias.getNota());
+		stmt.setString(7, ideias.getTemas_Impactados());
+		stmt.setString(8, ideias.getVideo_demostrativo());
+		stmt.setString(9, ideias.getNome());
 
 		stmt.execute();
 		stmt.close();
@@ -76,6 +78,7 @@ public class IdeiasDao {
 				cliente.setResumo_do_projeto(resultado.getString("Resumo_Do_Projeto"));
 				cliente.setVideo_demostrativo(resultado.getString("Video_Demostrativo"));
 				cliente.setNota(resultado.getFloat("Nota"));
+				cliente.setNome(resultado.getString("nome"));
 
 				retorno.add(cliente);
 			}

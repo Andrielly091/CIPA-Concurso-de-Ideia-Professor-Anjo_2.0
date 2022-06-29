@@ -15,6 +15,27 @@ public class PessoaDao {
 
     Connection connection = Conexao.getConexaoMySQL();
 
+    public List<Pessoa> listarAll() {
+        String sql = "SELECT id, nome, email, tipo_usuario FROM pessoas";
+        List<Pessoa> retorno = new ArrayList<>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Pessoa cliente = new Pessoa();
+                cliente.setId(resultado.getInt("id"));
+                cliente.setNome(resultado.getString("nome"));
+                cliente.setEmail(resultado.getString("email"));
+                cliente.setTipo(resultado.getString("tipo_usuario"));
+                retorno.add(cliente);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+
+
     public List<Pessoa> listar() {
         String sql = "SELECT * FROM pessoas";
         List<Pessoa> retorno = new ArrayList<>();

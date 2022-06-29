@@ -10,8 +10,17 @@ public class Ideias {
 	private String resumo_do_projeto;
 	private String video_demostrativo;
 	private float nota;
+	private String nome;
 
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public String getImagem() {
 		return imagem;
 	}
