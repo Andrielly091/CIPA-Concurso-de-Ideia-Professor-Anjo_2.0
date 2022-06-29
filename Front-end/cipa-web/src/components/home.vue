@@ -81,6 +81,7 @@ export default {
   methods: {
     sair() {
       setLocalStorge('auth', false)
+      setLocalStorge('id', null)
       this.$router.push('/login');
     },
     irParaInscricao() {

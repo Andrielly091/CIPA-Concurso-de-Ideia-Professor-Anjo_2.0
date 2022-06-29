@@ -78,6 +78,7 @@ public class PessoaController {
 			+ pessoa.getNome().substring(1));
 
 		try {
+			pessoaservice.inserir(pessoa);
 			response.setMensagem("create person: " + pessoa.getNome());
 			response.setStatusCode(HttpStatus.CREATED);
 			response.setCreated("true");

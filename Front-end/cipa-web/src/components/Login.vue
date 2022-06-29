@@ -21,7 +21,7 @@
         
         </div>
             <div class="forgot-pass"> 
-      <p>Esqueceu sua senha?</p>
+      <p><a v-on:click="recuperar()" >Esqueceu sua senha?</a></p>
     </div>
     
          <div class="row2">
@@ -71,6 +71,9 @@ export default {
     },
     cadastre(){
       this.$router.push('cadastro')
+    },
+    recuperar() {
+      return this.$router.push('/email')
     }
   },
 }
@@ -93,6 +96,9 @@ export default {
   }
   .forgot-pass{
     margin-left:57%;
+  }
+  a {
+    cursor: pointer;
   }
   .has-login p{
         color: black;
