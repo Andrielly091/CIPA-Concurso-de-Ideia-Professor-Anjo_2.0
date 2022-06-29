@@ -14,7 +14,7 @@ public class IdeiasDao {
 	Connection connection = Conexao.getConexaoMySQL();
 
 	public boolean inserir(Ideias ideia) throws ClassNotFoundException, SQLException {
-		String sql = "INSERT INTO ideias( id_lider, id_concurso,imagem, resumo_do_projeto, temas_impactados, video_demostrativo, nota) VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO ideias( id_lider, id_concurso,imagem, resumo_do_projeto, temas_impactados, video_demostrativo, nota, nome) VALUES (?,?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement stmt = (connection).prepareStatement(sql);
@@ -105,7 +105,7 @@ public class IdeiasDao {
 				cliente.setResumo_do_projeto(resultado.getString("Resumo_Do_Projeto"));
 				cliente.setVideo_demostrativo(resultado.getString("Video_Demostrativo"));
 				cliente.setNota(resultado.getFloat("Nota"));
-
+				cliente.setNome(resultado.getString("nome"));
 				retorno.add(cliente);
 			}
 		} catch (SQLException ex) {
