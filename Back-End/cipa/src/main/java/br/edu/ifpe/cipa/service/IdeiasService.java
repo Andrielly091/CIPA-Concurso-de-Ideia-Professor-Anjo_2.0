@@ -14,6 +14,10 @@ public class IdeiasService {
 		return ideiasdao.inserir(Ideias);
 	}
 
+	public boolean entidadeJaExisteId(Integer id) {
+		return ideiasdao.listar().stream().anyMatch(i -> i.getId_ideia() == id);
+	}
+
 	public List<Ideias> listar() {
 		return ideiasdao.listar();
 	}

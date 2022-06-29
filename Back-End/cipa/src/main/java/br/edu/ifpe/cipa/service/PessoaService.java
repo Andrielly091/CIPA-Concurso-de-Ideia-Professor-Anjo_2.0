@@ -34,8 +34,10 @@ public class PessoaService {
 	public Pessoa listarOne(Integer id) throws Exception {
 		if (!this.entidadeJaExisteId(id)) {
 			throw new Exception("Id não encontrado");
-		}		
-		return pessoadao.listar().get(id - 1);
+		}
+		Stream<Pessoa> result = pessoadao.listar().stream().filter(p -> p.getId() == id);
+		List<Pessoa> resultado = result.collect(Collectors.toList());
+		return resultado.get(0);
 	}
 	
 	public void alterar(Pessoa pessoa) throws Exception {
