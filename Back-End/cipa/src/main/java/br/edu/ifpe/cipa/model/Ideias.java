@@ -12,7 +12,6 @@ public class Ideias {
 	private float nota;
 	private String nome;
 
-	
 	public String getNome() {
 		return nome;
 	}
