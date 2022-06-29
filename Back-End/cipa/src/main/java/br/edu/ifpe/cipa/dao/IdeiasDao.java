@@ -30,7 +30,6 @@ public class IdeiasDao {
 
 			stmt.execute();
 			stmt.close();
-			connection.close();
 
 			return true;
 		} catch (SQLException ex) {
