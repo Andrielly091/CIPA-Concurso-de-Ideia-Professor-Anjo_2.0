@@ -25,10 +25,4 @@ public class LoginService {
 		}
 		return value;		
 	}
-
-	public void alterar(Integer loginId, String senha) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

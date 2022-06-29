@@ -80,15 +80,15 @@ values 	(1,1),
         (9,2);
 
 CREATE TABLE `cipa`.`notas_ideias`(
-id_pessoas INT,
+id_pessoa INT,
 id_ideia INT,
 nota DECIMAL(4,2),
 PRIMARY KEY (id_pessoas, id_ideia),
-FOREIGN KEY (`id_pessoas`) REFERENCES `cipa`.`pessoas` (`id`),
+FOREIGN KEY (`id_pessoa`) REFERENCES `cipa`.`pessoas` (`id`),
 FOREIGN KEY (`id_ideia`) REFERENCES `cipa`.`ideias` (`id_ideia`)
 );
 
-INSERT INTO `cipa`.`notas_ideias`(id_pessoas, id_ideia, nota)
+INSERT INTO `cipa`.`notas_ideias`(id_pessoa, id_ideia, nota)
 VALUES 	(1,1,10),
 		(1,2,10),
 		(2,1,10),
