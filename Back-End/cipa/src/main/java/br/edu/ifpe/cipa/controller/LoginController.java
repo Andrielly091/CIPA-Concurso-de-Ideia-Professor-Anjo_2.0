@@ -42,7 +42,6 @@ public class LoginController<senha> {
 			login.setId(0);
 			login.setNome(null);
 			login.setEmail(null);
-			login.setAuth(false);
 			login.setTipo(null);
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(login);
 		}

@@ -51,7 +51,7 @@ public class IdeiasController {
 				response.setStatusCode(HttpStatus.OK);
 				return new ResponseEntity<Response>(response, HttpStatus.OK);
 			}
-			response.setMensage("Not Found");
+			response.setMensagem("Not Found");
 			response.setStatusCode(HttpStatus.NOT_FOUND);
 			return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
 
@@ -72,7 +72,7 @@ public class IdeiasController {
 
 	}
 
-	@PutMapping("/u")
+	@PutMapping("/")
 	public void update(@RequestBody Ideias ideias) {
 		System.out.println("===== Atualizando Ideias ====");
 

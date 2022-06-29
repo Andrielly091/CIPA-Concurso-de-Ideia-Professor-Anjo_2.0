@@ -17,6 +17,10 @@ public class PessoaService {
 		return pessoadao.listar().stream().anyMatch(p -> p.getEmail().equals(pessoa.getEmail()));
 	}
 
+	public boolean entidadeJaExisteEmail(Integer id, String email) {
+		return pessoadao.listar().stream().filter(p -> p.getEmail().equals(email)).anyMatch(p -> p.getId() == id);
+	}
+
 	public boolean entidadeJaExisteId(Integer id) {
 		return pessoadao.listar().stream().anyMatch(p -> p.getId() == id);
 	}
@@ -28,13 +32,15 @@ public class PessoaService {
 	public Pessoa listarOne(Integer id) throws Exception {
 		if (!this.entidadeJaExisteId(id)) {
 			throw new Exception("Id não encontrado");
-		}
+		}		
 		return pessoadao.listar().get(id - 1);
 	}
 	
 	public void alterar(Pessoa pessoa) throws Exception {
-		if (!this.entidadeJaExiste(pessoa)) {
+		if (!this.entidadeJaExisteId(pessoa.getId())) {
 			throw new Exception("Pessoa não existe");
+		} else if (!this.entidadeJaExisteEmail(pessoa.getId(), pessoa.getEmail())) {
+			throw new Exception("Email já esta cadastrado em outra conta");
 		}
 		pessoadao.alterar(pessoa);
 	}

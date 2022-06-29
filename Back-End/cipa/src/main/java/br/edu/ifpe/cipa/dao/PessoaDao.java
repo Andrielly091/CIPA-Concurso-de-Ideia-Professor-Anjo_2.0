@@ -61,8 +61,7 @@ public class PessoaDao {
         String sql = "INSERT INTO pessoas(nome, email,senha, tipo_usuario) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, newPessoa.getNome().substring(0, 1).toUpperCase()
-                    + newPessoa.getNome().substring(1));
+            stmt.setString(1, newPessoa.getNome());
             stmt.setString(2, newPessoa.getEmail());
             stmt.setString(3, newPessoa.getSenha());
             stmt.setString(4, newPessoa.getTipo());

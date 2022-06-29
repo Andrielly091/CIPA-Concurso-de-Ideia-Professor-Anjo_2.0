@@ -1,18 +1,15 @@
 package br.edu.ifpe.cipa.model;
 
 import java.util.List;
-
 import org.springframework.http.HttpStatus;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import lombok.Data;
 
 @Data
 public class Response {
   @JsonInclude(Include.NON_NULL)
-  private String mensage;
+  private String mensagem;
   @JsonInclude(Include.NON_DEFAULT)
   private String isCreated;
   @JsonInclude(Include.NON_NULL)
@@ -29,11 +26,11 @@ public class Response {
   public void setAuth(String auth) {
     this.auth = auth;
   }
-  public String getMensage() {
-    return mensage;
+  public String getMensagem() {
+    return mensagem;
   }
-  public void setMensage(String mensage) {
-    this.mensage = mensage;
+  public void setMensagem(String mensagem) {
+    this.mensagem = mensagem;
   }
   public HttpStatus getStatusCode() {
     return statusCode;
