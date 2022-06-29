@@ -20,8 +20,8 @@ public class VotacaoDao {
     String sql = "INSERT INTO notas_ideias(id_pessoa, id_ideia, nota) VALUES(?,?,?)";
     try {
         PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setInt(1, newVotacao.getId_ideia());
-        stmt.setInt(2, newVotacao.getId_pessoa());
+        stmt.setInt(1, newVotacao.getId_pessoa());
+        stmt.setInt(2, newVotacao.getId_ideia());
         stmt.setFloat(3, newVotacao.getNota());
         stmt.execute();
         return true;
