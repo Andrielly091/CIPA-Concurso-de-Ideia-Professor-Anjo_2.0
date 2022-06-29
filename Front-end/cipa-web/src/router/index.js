@@ -5,6 +5,7 @@ import login from '../components/Login.vue'
 import inscricaoProjeto from '../components/inscricaoProjeto.vue'
 import recuperarSenha from '../components/recuperarSenha'
 import votacao from '../components/votacao'
+import emailUser from '../components/emailUser'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     component: recuperarSenha
   },
   {
+    path: '/email',
+    name: 'emailUser',
+    component: emailUser
+  },
+  {
     path: '/cadastro',
     name: 'cadastro',
     component: cadastro
@@ -38,7 +44,6 @@ const routes = [
     path: '/votacao',
     name: 'votacao',
     component: votacao,
-    
   },
 ]
 
@@ -48,7 +53,7 @@ const router = createRouter({
 })
 
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, __from, next) => {
   if(to.matched.some(route => route.meta.riqueresAuth)) {
     if (localStorage.getItem('auth') == 'false' || localStorage.getItem('auth') == null) {
       next('/login');

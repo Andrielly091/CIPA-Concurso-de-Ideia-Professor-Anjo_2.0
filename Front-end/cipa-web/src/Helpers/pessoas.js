@@ -13,7 +13,7 @@ export const add = async (description) => await api('POST', 'pessoas/', descript
 export const rm = async (id) => api('DELETE', `pessoas/${id}`)
   .then(getForOne);
 
-export const put = async (id, description, check) => api('PUT', `pessoas/${id}`, { description, check })
+export const put = async (description) => api('PUT', `pessoas/`, description)
   .then(getAll);
 
 export const findByEmail = async (email) => api('GET',`pessoas/findEmail/${email}`)

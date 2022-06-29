@@ -20,6 +20,14 @@ public class Response {
   private List<Ideias> ideias;
   @JsonInclude(Include.NON_NULL)
   private String auth;
+  @JsonInclude(Include.NON_NULL)
+  private String found;
+  public String getFound() {
+    return found;
+  }
+  public void setFound(String found) {
+    this.found = found;
+  }
   public String getAuth() {
     return auth;
   }
