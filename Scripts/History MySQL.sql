@@ -30,9 +30,9 @@ VALUES ('Jadeilson','jadeilsom.m@gmail.com','Aluno',123456789, NULL),
     ('ricson','ricson@gmail.com','professor',123456789,1),
     ('Lavinia','lavinia@gmail.com','Aluno', 123456789,NULL),
     ('Robson','robson@gmail.com','Aluno', 123456789,NULL),
-     ('Hiane','andriely@gmail.com','Aluno',123456789, NULL),
+     ('Hiany','hiany@gmail.com','Aluno',123456789, NULL),
     ('Priscila','priscila@gmail.com','Aluno',123456789,NULL),
-    ('Frenacievely','francievely@gmail.com','Aluno', 123456789,NULL);
+    ('Francievellyn','francievellyn@gmail.com','Aluno', 123456789,NULL);
     
 CREATE TABLE `cipa`.`concurso`(
 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -83,7 +83,7 @@ CREATE TABLE `cipa`.`notas_ideias`(
 id_pessoa INT,
 id_ideia INT,
 nota DECIMAL(4,2),
-PRIMARY KEY (id_pessoas, id_ideia),
+PRIMARY KEY (id_pessoa, id_ideia),
 FOREIGN KEY (`id_pessoa`) REFERENCES `cipa`.`pessoas` (`id`),
 FOREIGN KEY (`id_ideia`) REFERENCES `cipa`.`ideias` (`id_ideia`)
 );
