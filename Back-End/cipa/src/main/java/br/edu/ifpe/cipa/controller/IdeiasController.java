@@ -32,32 +32,21 @@ public class IdeiasController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Response> consultarIdeiasPorId(@PathVariable String id) {
+	public ResponseEntity<Response> consultarIdeiasPorId(@PathVariable Integer id) throws Exception {
+		Response response = new Response();
+		ResponseEntity<Response> re;
 		try {
-			Response response = new Response();
-			boolean value = false;
-			int number = Integer.parseInt(id);
-
-			List<Ideias> ideias = ideiasservice.listar();
-			for (Iterator<Ideias> iterator = ideias.iterator(); iterator.hasNext();) {
-				Ideias i = iterator.next();
-				if (i.getId_ideia() == (number)) {
-					value = true;
-				}
-			}
-			if (value == true) {
-				List<Ideias> ideiaRetorno = ideiasservice.listarApenasPessoa(number);
-				response.setIdeias(ideiaRetorno);
-				response.setStatusCode(HttpStatus.OK);
-				return new ResponseEntity<Response>(response, HttpStatus.OK);
-			}
-			response.setMensagem("Not Found");
+			List<Ideias> result = ideiasservice.listarApenasPessoa(id);
+			response.setIdeias(result);
+			response.setMensagem("Buscando apenas uma ideia");
+			response.setStatusCode(HttpStatus.OK);
+			re = new ResponseEntity<Response>(response, HttpStatus.OK);
+		} catch (Exception e) {
+			response.setMensagem(e.getMessage());
 			response.setStatusCode(HttpStatus.NOT_FOUND);
-			return new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
-
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<Response>(HttpStatus.NOT_FOUND);
+			re = new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
 		}
+		return re;
 	}
 
 	@PostMapping("/")
@@ -67,14 +56,12 @@ public class IdeiasController {
 
 	@DeleteMapping("/r/{id}")
 	public void deletar(@PathVariable Integer id) {
-		System.out.println("===== REMOVENDO IDEIA ====");
 		ideiasservice.Deletar(id);
 
 	}
 
 	@PutMapping("/")
 	public void update(@RequestBody Ideias ideias) {
-		System.out.println("===== Atualizando Ideias ====");
 
 		ideiasservice.Atualizar(ideias);
 	}

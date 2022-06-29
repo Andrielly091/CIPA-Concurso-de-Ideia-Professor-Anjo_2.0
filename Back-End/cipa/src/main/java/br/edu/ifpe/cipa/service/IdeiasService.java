@@ -2,6 +2,9 @@ package br.edu.ifpe.cipa.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.springframework.stereotype.Service;
 import br.edu.ifpe.cipa.dao.IdeiasDao;
 import br.edu.ifpe.cipa.model.Ideias;
@@ -26,9 +29,15 @@ public class IdeiasService {
 		ideiasdao.consultar(ideias);
 	}
 
-	public List<Ideias> listarApenasPessoa(Integer id) {
-		return ideiasdao.listarApenasPessoa(id);
+	public List<Ideias> listarApenasPessoa(int id) throws Exception {
+		if (!this.entidadeJaExisteId(id)) {
+			throw new Exception("Id não encontrado");
+		}
+		Stream<Ideias> result = ideiasdao.listar().stream().filter(p -> p.getId_ideia() == id);
+		List<Ideias> resultado = result.collect(Collectors.toList());
+		return resultado;
 	}
+
 
 	public void Deletar(int id) {
 		ideiasdao.Deletar(id);
