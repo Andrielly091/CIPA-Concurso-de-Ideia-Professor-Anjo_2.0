@@ -1,6 +1,7 @@
 package br.edu.ifpe.cipa.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpe.cipa.model.Pessoa;
+import br.edu.ifpe.cipa.model.Response;
 import br.edu.ifpe.cipa.service.LoginService;
+import br.edu.ifpe.cipa.service.PessoaService;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -33,34 +36,36 @@ public class LoginController<senha> {
 
 
 	@PostMapping("")
-	public ResponseEntity<Pessoa> auth (@RequestBody Pessoa login) throws SQLException {
-		System.out.println("===== Autenticação ====");
+	public ResponseEntity<Response> auth (@RequestBody Pessoa login) throws SQLException {
+		Response response = new Response();
+		PessoaService pessoaservice = new PessoaService();
+		ResponseEntity<Response> re;
 		var value = loginservice.auth(login.getEmail(), login.getSenha());
-		System.out.println("value"+value);
-		if((value == null)) {
-			System.out.println("teste");
-			login.setId(0);
-			login.setNome(null);
-			login.setEmail(null);
-			login.setTipo(null);
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(login);
+		if(value == false) {
+			response.setMensagem("Falha na autenticação");
+			response.setAuth("false");
+			re = new ResponseEntity<Response>(response, HttpStatus.UNAUTHORIZED);
 		}
-
-	
-		boolean valid = encoder.matches(login.getSenha(), value.getSenha());
-		System.out.println(valid);
-		
-		if (valid == true) {
-			value.setAuth(true);
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body(value);
-		} else {
-			value.setId(0);
-			value.setNome(null);
-			value.setEmail(null);
-			value.setAuth(false);
-			value.setTipo(null);
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(value);
+		try {
+			List<Pessoa> retorno = pessoaservice.findEmail(login.getEmail());
+			boolean valid = encoder.matches(login.getSenha(), retorno.get(0).getSenha());
+			if (valid == true) {
+				retorno.get(0).setSenha(null);
+				response.setAuth("true");
+				response.setMensagem("Autenticação");
+				response.setPessoas(retorno);
+				re = new ResponseEntity<Response>(response, HttpStatus.ACCEPTED);
+			} else {
+				response.setAuth("false");
+				response.setMensagem("Falha na autenticação");
+				re = new ResponseEntity<Response>(response, HttpStatus.UNAUTHORIZED);
+			}
+		} catch (Exception e) {
+			response.setAuth("false");
+			response.setMensagem(e.getMessage());
+			re = new ResponseEntity<Response>(response, HttpStatus.UNAUTHORIZED);
 		}
+		return re;
 	}
 
 

@@ -14,18 +14,15 @@ public class LoginService {
 	PessoaDao pessoas = new PessoaDao();
 
 	
-	public Pessoa auth(String email, String senha) throws SQLException {
-		
+	public boolean auth(String email, String senha) throws SQLException {
 		List<Pessoa> allPessoas = pessoas.listar();
-				
-		Pessoa value = null;
+		boolean value = false;
 		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext(); ) { 
 			Pessoa p = iterator.next(); 
 			if (p.getEmail().equals(email)) {
-				value = p;
+				value = true;
 			}
 		}
-		System.out.println(value);
 		return value;
 		
 		

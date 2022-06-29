@@ -1,6 +1,8 @@
 package br.edu.ifpe.cipa.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,8 @@ public class PessoaService {
 	
 	PessoaDao pessoadao = new PessoaDao();
 	
-	public boolean entidadeJaExiste(Pessoa pessoa) {
-		return pessoadao.listar().stream().anyMatch(p -> p.getEmail().equals(pessoa.getEmail()));
+	public boolean entidadeJaExiste(String email) {
+		return pessoadao.listar().stream().anyMatch(p -> p.getEmail().equals(email));
 	}
 
 	public boolean entidadeJaExisteEmail(Integer id, String email) {
@@ -47,7 +49,7 @@ public class PessoaService {
 
 	
 	public void inserir(Pessoa pessoa) throws Exception {
-		if (this.entidadeJaExiste(pessoa)) {
+		if (this.entidadeJaExiste(pessoa.getEmail())) {
 			throw new Exception("Pessoa ja cadastrado");
 		}
 		pessoadao.inserir(pessoa);
@@ -59,6 +61,15 @@ public class PessoaService {
 			throw new Exception("Pessoa não existe");
 		}
 		pessoadao.remover(id);
+	}
+
+	public List<Pessoa> findEmail(String email) throws Exception {
+		if (!this.entidadeJaExiste(email)) {
+			throw new Exception("Email não encontrado");
+		}
+		Stream<Pessoa> result = pessoadao.listar().stream().filter(p -> p.getEmail().equals(email));
+		List<Pessoa> resultado = result.collect(Collectors.toList());
+		return resultado;
 	}
 	
 }
