@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import br.edu.ifpe.cipa.model.Response;
 import br.edu.ifpe.cipa.service.LoginService;
 import br.edu.ifpe.cipa.service.PessoaService;
 
-@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/login")
 public class LoginController<senha> {
@@ -38,9 +36,10 @@ public class LoginController<senha> {
 		Response response = new Response();
 		PessoaService pessoaservice = new PessoaService();
 		ResponseEntity<Response> re;
-		var value = loginservice.auth(login.getEmail(), login.getSenha());
+		boolean value = loginservice.auth(login.getEmail(), login.getSenha());
 		if(value == false) {
 			response.setMensagem("Falha na autenticação");
+			response.setStatusCode(HttpStatus.UNAUTHORIZED);
 			response.setAuth("false");
 			re = new ResponseEntity<Response>(response, HttpStatus.UNAUTHORIZED);
 		}
@@ -55,11 +54,13 @@ public class LoginController<senha> {
 				re = new ResponseEntity<Response>(response, HttpStatus.ACCEPTED);
 			} else {
 				response.setAuth("false");
+				response.setStatusCode(HttpStatus.UNAUTHORIZED);
 				response.setMensagem("Falha na autenticação");
 				re = new ResponseEntity<Response>(response, HttpStatus.UNAUTHORIZED);
 			}
 		} catch (Exception e) {
 			response.setAuth("false");
+			response.setStatusCode(HttpStatus.UNAUTHORIZED);
 			response.setMensagem(e.getMessage());
 			re = new ResponseEntity<Response>(response, HttpStatus.UNAUTHORIZED);
 		}
