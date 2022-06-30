@@ -11,10 +11,9 @@ import br.edu.ifpe.cipa.model.Pessoa;
 
 @Service
 public class PessoaService {
-	
-	
+
 	PessoaDao pessoadao = new PessoaDao();
-	
+
 	public boolean entidadeJaExiste(String email) {
 		return pessoadao.listar().stream().anyMatch(p -> p.getEmail().equals(email));
 	}
@@ -39,7 +38,7 @@ public class PessoaService {
 		List<Pessoa> resultado = result.collect(Collectors.toList());
 		return resultado.get(0);
 	}
-	
+
 	public void alterar(Pessoa pessoa) throws Exception {
 		if (!this.entidadeJaExisteId(pessoa.getId())) {
 			throw new Exception("Pessoa não existe");
@@ -49,15 +48,14 @@ public class PessoaService {
 		pessoadao.alterar(pessoa);
 	}
 
-	
 	public void inserir(Pessoa pessoa) throws Exception {
 		if (this.entidadeJaExiste(pessoa.getEmail())) {
 			throw new Exception("Pessoa ja cadastrado");
 		}
 		pessoadao.inserir(pessoa);
-	
+
 	}
-	
+
 	public void remover(int id) throws Exception {
 		if (!this.entidadeJaExisteId(id)) {
 			throw new Exception("Pessoa não existe");
@@ -73,5 +71,5 @@ public class PessoaService {
 		List<Pessoa> resultado = result.collect(Collectors.toList());
 		return resultado;
 	}
-	
+
 }
