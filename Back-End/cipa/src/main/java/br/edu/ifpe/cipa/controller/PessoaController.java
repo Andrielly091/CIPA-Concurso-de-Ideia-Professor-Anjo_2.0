@@ -131,7 +131,6 @@ public class PessoaController {
 	public ResponseEntity<Response> update(@RequestBody Pessoa pessoa) {
 		pessoa.setSenha(encoder.encode(pessoa.getSenha()));
 		pessoa.setNome(pessoa.getNome().substring(0, 1).toUpperCase() + pessoa.getNome().substring(1));
-
 		Response response = new Response();
 		ResponseEntity<Response> re;
 		try {

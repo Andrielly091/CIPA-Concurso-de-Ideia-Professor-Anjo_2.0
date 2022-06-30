@@ -34,4 +34,4 @@ public class Votacao {
 		this.id_pessoa = id_pessoa;
 	}
 
-}
+};

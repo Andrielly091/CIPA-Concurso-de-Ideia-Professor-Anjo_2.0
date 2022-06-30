@@ -41,7 +41,7 @@ const routes = [
     meta: { riqueresAuth: true }
   },
   {
-    path: '/votacao',
+    path: '/votacao/:id',
     name: 'votacao',
     component: votacao,
   },

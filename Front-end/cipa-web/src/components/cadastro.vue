@@ -1,127 +1,124 @@
 <template>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1" >
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <body>
+    <div class="content-index">
+      <div class="division-1">
+        <img src="https://i.imgur.com/HcLNjzn.png" class="logo" />
+        <div class="texts">
+          <p>
+            <mark>Olá</mark><br />por favor insira os seus dados<br />
+            para entrar.
+          </p>
+        </div>
+        <div class="agroup">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">person</i>
+              <input
+                id="nomeCompleto"
+                v-model="nomeCompleto"
+                type="text"
+                class="validate"
+                placeholder="Nome Completo:"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">email</i>
+              <input
+                id="login"
+                v-model="email"
+                type="email"
+                class="validate"
+                placeholder="Digite seu email:"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">vpn_key</i>
+              <input
+                id="senha"
+                v-model="senha"
+                type="password"
+                class="validate"
+                placeholder="Digite sua senha:"
+              />
+            </div>
+          </div>
+          <div>
+            <i id="tipo" class="material-icons prefix">people</i>
+            <select id="usuario" v-model="tipo" class="browser-default">
+              <option value="" disabled selected>Tipo de usuário</option>
+              <option value="Instituição" id="sumir">Instituição</option>
+              <option value="Aluno" v-on:click="instituicao()">
+                Estudante
+              </option>
+            </select>
+          </div>
 
-/*margin:0;
-  padding:0;*/
-<body>
+          <div v-if="tipo === 'Instituição'" class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">location_city</i>
+              <input
+                v-on:click="instituicao()"
+                id="senha"
+                v-model="nome_impresa"
+                type="text"
+                class="validate"
+                placeholder="Digite sua empresa:"
+              />
+            </div>
+          </div>
 
-  <div class="content-index">
-    <div class="division-1">
-      <img src="https://i.imgur.com/HcLNjzn.png" class="logo" />
-      <div class="texts">
-        <p>
-          <mark>Olá</mark><br />por favor insira os seus dados<br />
-          para entrar.
+          <div class="row" v-if="tipo === 'Instituição'">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">assignment_ind</i>
+              <input
+                v-on:click="instituicao()"
+                id="senha"
+                v-model="cargo"
+                type="text"
+                class="validate"
+                placeholder="Digite seu cargo:"
+              />
+            </div>
+          </div>
+
+          <div class="row2">
+            <button
+              v-on:click="cadastrar()"
+              :disabled="!email || !senha"
+              class="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+            >
+              CADASTRAR
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+          <div class="has-login">
+            <p>Você já tem uma conta? <a v-on:click="entre()">Entre.</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="division-2">
+        <img src="undraw_product_teardown_elol-removebg-preview.png" />
+        <h1 class="titulo">CIPA</h1>
+        <p class="subtitulo">
+          Concurso de ideias<br />
+          professor anjo
         </p>
       </div>
-      <div class="agroup">
-        <div class="row">
-          <div class="input-field col s6">
-            <i class="material-icons prefix">person</i>
-            <input
-              id="nomeCompleto"
-              v-model="nomeCompleto"
-              type="text"
-              class="validate"
-              placeholder="Nome Completo:"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <i class="material-icons prefix">email</i>
-            <input
-              id="login"
-              v-model="email"
-              type="email"
-              class="validate"
-              placeholder="Digite seu email:"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <i class="material-icons prefix">vpn_key</i>
-            <input
-              id="senha"
-              v-model="senha"
-              type="password"
-              class="validate"
-              placeholder="Digite sua senha:"
-            />
-          </div>
-        </div>
-        <div>
-          <i id="tipo" class="material-icons prefix">people</i>
-          <select id="usuario" v-model="tipo" class="browser-default">
-            <option value="" disabled selected>Tipo de usuário</option>
-            <option value="Instituição" id="sumir">Instituição</option>
-            <option value="Aluno" v-on:click="instituicao()">Estudante</option>
-          </select>
-        </div>
-        
-        <div v-if="tipo === 'Instituição'" class="row">
-          <div class="input-field col s6">
-            <i class="material-icons prefix">location_city</i>
-            <input
-              v-on:click="instituicao()"
-              id="senha"
-              v-model="nome_impresa"
-              type="text"
-              class="validate"
-              placeholder="Digite sua empresa:"
-            />
-          </div>
-        </div>
-
-        <div class="row" v-if="tipo === 'Instituição'" >
-          <div class="input-field col s6">
-            <i class="material-icons prefix">assignment_ind</i>
-            <input
-              v-on:click="instituicao()"
-              id="senha"
-              v-model="cargo"
-              type="text"
-              class="validate"
-              placeholder="Digite seu cargo:"
-            />
-          </div>
-        </div>
-
-        <div class="row2">
-          <button
-            v-on:click="cadastrar()"
-            :disabled="!email || !senha"
-            class="btn waves-effect waves-light"
-            type="submit"
-            name="action"
-          >
-            CADASTRAR
-            <i class="material-icons right">send</i>
-          </button>
-        </div>
-        <div class="has-login">
-          <p>Você já tem uma conta? <a v-on:click="entre()">Entre.</a></p>
-        </div>
-      </div>
     </div>
-    <div class="division-2">
-      <img src="undraw_product_teardown_elol-removebg-preview.png" />
-      <h1 class="titulo">CIPA</h1>
-      <p class="subtitulo">
-        Concurso de ideias<br />
-        professor anjo
-      </p>
-    </div>
-  </div>
-</body>
+  </body>
 </template>
 
 <script>
 import { add } from "../Helpers/pessoas";
 export default {
-                                            
   data() {
     return {
       email: "",
@@ -139,13 +136,13 @@ export default {
         tipo: this.tipo,
       };
       const data = await add(objPessoa);
-      console.log('isCadastrado', data);
-      if (data.isCadatro == 'true') {
-        setTimeout(() => this.$router.push('/login'), 700)
+
+      if (data.isCadatro == "true") {
+        setTimeout(() => this.$router.push("/login"), 700);
       }
-      return alert(data.mensagem)
+      return alert(data.mensagem);
     },
-    
+
     entre() {
       this.$router.push("/login");
     },
@@ -311,6 +308,5 @@ input {
   height: 30px !important;
   margin-top: 2% !important;
   border-radius: 5px !important;
-
 }
 </style>
