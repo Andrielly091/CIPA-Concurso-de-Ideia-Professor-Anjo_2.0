@@ -25,10 +25,6 @@ public class IdeiasService {
 		return ideiasdao.listar();
 	}
 
-	public void consultar(Ideias ideias) throws ClassNotFoundException, SQLException {
-		ideiasdao.consultar(ideias);
-	}
-
 	public List<Ideias> listarApenasPessoa(int id) throws Exception {
 		if (!this.entidadeJaExisteId(id)) {
 			throw new Exception("Id não encontrado");

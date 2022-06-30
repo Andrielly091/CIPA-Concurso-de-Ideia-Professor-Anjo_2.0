@@ -13,12 +13,14 @@
             <input id="Confirmasenha" v-model="confSenha" type="password" min=8 placeholder="Confirmar senha:">
           </div>
         </div>
-        <button v-on:click="alterar()" :disabled="!confSenha || !senha || senha.length < 8" class="btn waves-effect waves-light" type="submit" name="action">Confirmar
+        <button v-on:click="alterar()" :disabled="!confSenha || !senha || senha.length < 8 || confSenha.length < 8" class="btn waves-effect waves-light" type="submit" name="action">Confirmar
           <i class="material-icons right">send</i>
         </button>
   </div>
 </template>
 <script>
+import { getForOne, put } from '../Helpers/pessoas'
+
 export default {
   name: 'recuperarSenha',
   data() {
@@ -30,10 +32,15 @@ export default {
   }, 
   methods: {
     async alterar() { 
-      console.log(this.idUser);
       if (this.confSenha !== this.senha) {
-        alert('Senhas diferentes!\nPrencha com senhas iguais')
+        alert('Senhas diferentes')
       }
+      const { pessoas } = await getForOne(this.idUser)
+      const [upPessoa] = pessoas
+      upPessoa.senha = this.senha
+      console.log(upPessoa);
+      await put(upPessoa)
+      this.$router.push('/login')
     },
 }
 }
@@ -50,8 +57,6 @@ export default {
     margin: 0 auto;
     margin-top: 45px;
     align-items: center;
-    border: 1px solid;
-    border-radius: 15px;
   }
   button {
     width: 200px;

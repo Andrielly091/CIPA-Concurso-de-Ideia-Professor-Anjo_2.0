@@ -51,7 +51,7 @@ public class IdeiasController {
 		return ideiasservice.inserir(ideias);
 	}
 
-	@DeleteMapping("/r/{id}")
+	@DeleteMapping("/{id}")
 	public void deletar(@PathVariable Integer id) {
 		ideiasservice.Deletar(id);
 

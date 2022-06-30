@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Email {
 
-    public String getFrom() {
+  public String getFrom() {
 		return from;
 	}
 	public void setFrom(String from) {
@@ -36,7 +36,7 @@ public class Email {
 		this.text = text;
 	}
 	private String from;
-    private String to;
-    private String subject;
-    private String text;
+  private String to;
+  private String subject;
+  private String text;
 }

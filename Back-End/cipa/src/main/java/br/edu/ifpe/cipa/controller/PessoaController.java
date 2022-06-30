@@ -75,6 +75,7 @@ public class PessoaController {
 		pessoa.setNome(pessoa.getNome().substring(0, 1).toUpperCase() + pessoa.getNome().substring(1));
 
 		try {
+			pessoaservice.inserir(pessoa);
 			response.setMensagem("create person: " + pessoa.getNome());
 			response.setStatusCode(HttpStatus.CREATED);
 			response.setCreated("true");
@@ -89,16 +90,24 @@ public class PessoaController {
 	}
 
 	@GetMapping("/findEmail/{email}")
-	public Pessoa findByEmail(@PathVariable String email) {
-		List<Pessoa> allPessoas = pessoaservice.listar();
-		Pessoa value = null;
-		for (Iterator<Pessoa> iterator = allPessoas.iterator(); iterator.hasNext();) {
-			Pessoa p = iterator.next();
-			if (p.getEmail().equals(email)) {
-				value = p;
-			}
+	public ResponseEntity<Response> findByEmail(@PathVariable String email) {
+		Response response = new Response();
+		ResponseEntity<Response> re;
+		try {
+			List<Pessoa> pes = pessoaservice.findEmail(email);
+			response.setPessoas(pes);
+			response.setMensagem("Consulta por email");
+			response.setStatusCode(HttpStatus.OK);
+			response.setFound("true");
+			re = new ResponseEntity<Response>(response, HttpStatus.OK);
+		} catch (Exception e) {
+			//TODO: handle exception
+			response.setMensagem(e.getMessage());
+			response.setStatusCode(HttpStatus.NOT_FOUND);
+			re = new ResponseEntity<Response>(response, HttpStatus.NOT_FOUND);
 		}
-		return value;
+
+		return re;
 	}
 
 	@DeleteMapping("/{id}")
