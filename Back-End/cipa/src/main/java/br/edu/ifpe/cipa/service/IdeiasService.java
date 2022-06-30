@@ -36,7 +36,6 @@ public class IdeiasService {
 
 	public void Deletar(int id) {
 		ideiasdao.Deletar(id);
-
 	}
 
 	public void Atualizar(Ideias ideias) {
