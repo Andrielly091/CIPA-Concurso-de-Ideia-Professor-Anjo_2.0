@@ -110,7 +110,7 @@
           </button>
         </div>
         <div class="has-login">
-          <p>Você já tem uma conta? <a v-on:click="entre()">Entre.</a></p>
+          <p>Ir para o <a v-on:click="entre()">home.</a></p>
         </div>
       </div>
     </div>
@@ -189,7 +189,7 @@ export default {
       console.log('id_lider',id);
       console.log('nome', this.tituloProjeto)
       const objIdeia = {
-        id_lider: 1,
+        id_lider: id,
         id_concurso: 1,
         nome: this.tituloProjeto,
         imagem: this.imgBase64,
@@ -199,6 +199,7 @@ export default {
       };
       console.log(objIdeia)
       await add(objIdeia);
+      setTimeout(() => this.$router.push("/"), 700);
       // this.$router.push("/");
     },
     entre() {

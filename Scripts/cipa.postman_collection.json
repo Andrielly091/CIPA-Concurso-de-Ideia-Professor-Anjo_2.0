@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "87727fee-1dce-4b2e-908f-3d3adcad9968",
+		"name": "cipa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pessoas",
+			"item": [
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/pessoas/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pessoas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"nome\": \"joas\",\r\n    \"email\": \"jadeilsom.m@gmail.com\",\r\n    \"senha\": \"123456789\",\r\n    \"tipo\": \"Aluno\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoas/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remuve",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddPessoas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"vitoria\",\r\n    \"email\": \"vitoria@gmail.com\",\r\n    \"senha\": \"123456789\",\r\n    \"tipo\": \"Aluno\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/pessoas/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pessoas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByEmail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas/findEmail/jadeilsom.m@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"findEmail",
+								"jadeilsom.m@gmail.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ideias",
+			"item": [
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "FindOne",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_lider\": 1,\r\n    \"id_concurso\": 1,\r\n    \"imagem\": \"https://user-images.githubusercontent.com/91958908/176515685-7501b33d-82a8-44ec-a60a-440273bde1dc.png\",\r\n    \"resumo_do_projeto\": \"Surgiu através da necessidade de ter um controle e gerenciamento do transporte escolar, para auxiliar o estudante a chegar na instituição de ensino, com segurança, sem dúvidas e frustrações . Sem esperar horas pelo transporte ou não saber ' qual é o ônibus?'.\",\r\n    \"temas_Impactados\": \"Educação e Cidadania\",\r\n    \"video_demostrativo\" : \"https://www.youtube.com/watch?v=PsT70zPTVyo\",\r\n    \"nota\" : 10,\r\n    \"nome\" : \"Transport Free School\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/ideias/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ideias",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jadeilsom.m@gmail.com\",\r\n    \"senha\": 123456789\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "votaçao",
+			"item": [
+				{
+					"name": "listar",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_pessoa\": 700,\r\n    \"id_ideia\": 20,\r\n    \"nota\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/votacao/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"votacao",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email",
+			"item": [
+				{
+					"name": "envio de email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"jadeilsonm17@gmail.com\",\r\n    \"to\": \"silvaeliel940@gmail.com\",\r\n    \"subject\": \"test\",\r\n    \"text\": \"teste de api email\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/email",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"email"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
