@@ -84,9 +84,10 @@ export default {
       const obj = { email: this.email, senha: this.senha };
       const data = await auth(obj);
       if (data.auth == "true") {
-        const { auth, id } = data;
+        const { auth, pessoas } = data;
+        console.log(data)
         setLocalStorge("auth", auth);
-        setLocalStorge("id", id);
+        setLocalStorge("id", pessoas[0].id);
         return this.$router.push("/");
       }
       setLocalStorge("auth", false);
