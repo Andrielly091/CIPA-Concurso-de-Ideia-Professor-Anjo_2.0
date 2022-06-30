@@ -35,11 +35,8 @@ public class LoginController<senha> {
 		PessoaService pessoaservice = new PessoaService();
 		ResponseEntity<Response> re;
 		boolean value = loginservice.auth(login.getEmail(), login.getSenha());
-<<<<<<< HEAD
-		if (value == false) {
-=======
+
 		if(value == false) {
->>>>>>> 5329a83031471a1c4f7a6dfbef9c1fc0f33e35b7
 			response.setMensagem("Falha na autenticação");
 			response.setStatusCode(HttpStatus.UNAUTHORIZED);
 			response.setAuth("false");

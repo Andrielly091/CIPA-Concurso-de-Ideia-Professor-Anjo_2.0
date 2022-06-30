@@ -1,7 +1,9 @@
 <template>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo"
+  <div>
+
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo"
         ><img src="https://i.imgur.com/N2uQg4X.png" style="width: 85px"
       /></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -29,12 +31,14 @@
           <p class="card-text">
             {{ o.resumo_do_projeto }}
           </p>
-          <a :value="o.id" @click="votar(o.id)" class="btn btn-primary">Votar</a>
-          <a :value="o.id" @click="detalhes(o.id)" class="btn btn-primary">Leia mais</a>
+          <a class="btn btn-primary">Votar</a>
+          <a class="btn btn-primary">Leia mais</a>
         </div>
       </div>
     </div>
   </div>
+  </div>
+
 </template>
 
 <script>
@@ -64,12 +68,12 @@ export default {
       this.$router.push("/inscricaoProjeto");
     },
     detalhes(e) {
-      console.log(e);
+      console.log('value',e.target.value);
       const url = `/votacao/${e}`
       this.$router.push(url)
     },
     votar(e) {
-      console.log(e)
+      console.log('value',e.target.value)
       const url = `/votacao/${e}`
       this.$router.push(url)
     }
