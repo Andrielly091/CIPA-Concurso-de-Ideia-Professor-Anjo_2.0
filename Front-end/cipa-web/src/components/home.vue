@@ -29,8 +29,8 @@
           <p class="card-text">
             {{ o.resumo_do_projeto }}
           </p>
-          <a href="#" class="btn btn-primary">Votar</a>
-          <a href="#" class="btn btn-primary">Leia mais</a>
+          <a :value="o.id" @click="votar(o.id)" class="btn btn-primary">Votar</a>
+          <a :value="o.id" @click="detalhes(o.id)" class="btn btn-primary">Leia mais</a>
         </div>
       </div>
     </div>
@@ -48,13 +48,11 @@ export default {
       objeto: [],
     };
   },
-
   props: {
     msg: String,
   },
   async mounted() {
     const data = await getAll();
-    console.log(data);
     this.objeto = data;
   },
   methods: {
@@ -65,6 +63,16 @@ export default {
     irParaInscricao() {
       this.$router.push("/inscricaoProjeto");
     },
+    detalhes(e) {
+      console.log(e);
+      const url = `/votacao/${e}`
+      this.$router.push(url)
+    },
+    votar(e) {
+      console.log(e)
+      const url = `/votacao/${e}`
+      this.$router.push(url)
+    }
   },
 };
 </script>
