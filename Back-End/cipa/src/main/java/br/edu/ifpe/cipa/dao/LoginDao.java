@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 import br.edu.ifpe.cipa.model.Login;
 
-
 public class LoginDao {
 	Connection connection = Conexao.getConexaoMySQL();
 
@@ -31,20 +30,17 @@ public class LoginDao {
 				resposta.add(login);
 				stmt.execute();
 
-
 				stmt.close();
 			}
 			connection.close();
 
-        } catch (SQLException e) {
-            Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
-        }
-        
-        return resposta;
-    }
+		} catch (SQLException e) {
+			Logger.getLogger(LoginDao.class.getName()).log(Level.SEVERE, null, e);
+		}
 
-	 
-	
+		return resposta;
+	}
+
 	public boolean inserir(Login loginBd) throws ClassNotFoundException, SQLException {
 		String sql = "INSERT INTO login(email, senha) VALUES(?,?)";
 		try {

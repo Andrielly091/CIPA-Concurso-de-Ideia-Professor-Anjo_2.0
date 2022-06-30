@@ -23,23 +23,21 @@ import br.edu.ifpe.cipa.service.PessoaService;
 public class LoginController<senha> {
 
 	LoginService loginservice = new LoginService();
-	
+
 	private final PasswordEncoder encoder;
 
-	
 	public LoginController(PasswordEncoder encoder) {
 		super();
 		this.encoder = encoder;
 	}
 
-
 	@PostMapping("")
-	public ResponseEntity<Response> auth (@RequestBody Pessoa login) throws SQLException {
+	public ResponseEntity<Response> auth(@RequestBody Pessoa login) throws SQLException {
 		Response response = new Response();
 		PessoaService pessoaservice = new PessoaService();
 		ResponseEntity<Response> re;
 		var value = loginservice.auth(login.getEmail(), login.getSenha());
-		if(value == false) {
+		if (value == false) {
 			response.setMensagem("Falha na autenticação");
 			response.setAuth("false");
 			re = new ResponseEntity<Response>(response, HttpStatus.UNAUTHORIZED);
